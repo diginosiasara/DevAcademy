@@ -1,0 +1,6 @@
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.75rem}
+.st div{background:var(--card);border:1px solid var(--line);border-radius:.8rem;padding:.8rem}
+.st b{display:block;font-size:1.5rem}
+.st div{display:flex;flex-direction:column;gap:.15rem;box-shadow:0 2px 10px rgba(0,0,0,.05);color:var(--mute);font-size:.85rem}
+.st div svg{color:var(--acc)}
+.st b{color:var(--ink)}

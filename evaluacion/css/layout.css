@@ -1,0 +1,20 @@
+.w,.hd,.tabs{max-width:52rem;margin-inline:auto;padding-inline:1rem}
+.w{padding-block:1.25rem 4rem}
+.w:focus{outline:none}
+.hd{display:flex;gap:.75rem;align-items:flex-start;justify-content:space-between;padding-top:1.25rem}
+.eyebrow{margin:0;color:var(--mute);font-size:.875rem;font-weight:600}
+.tabs{display:flex;gap:.25rem;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-block:1rem}
+.tabs a{background:none;border:0;border-bottom:4px solid transparent;padding:.7rem .9rem;min-height:2.75rem;font:inherit;font-weight:600;color:var(--mute);cursor:pointer}
+.tabs a[aria-current=page]{color:var(--acc);border-color:var(--acc)}
+.hero{background:linear-gradient(135deg,#0b3d4a 0%,#0b5c5e 45%,#1d4ed8 120%);color:#fff;padding:1.5rem 0 3.2rem;border-radius:0 0 2rem 2rem;margin-bottom:-2rem;box-shadow:0 10px 30px rgba(11,60,74,.28)}
+.hero-in{max-width:52rem;margin:auto;padding-inline:1rem;display:flex;gap:1rem;justify-content:space-between;align-items:flex-start}
+.hero .eyebrow{color:#bfe7e7;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+.hero h1{font:800 1.9rem/1.15 Georgia,serif;color:#fff}
+.hero h1 span{font-weight:500;font-size:1.15rem;color:#d7f1f1;font-family:system-ui,sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:.9rem 0 0}
+.chips li{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:.15rem .8rem;font-weight:700;font-size:.88rem}
+.tabs{position:relative;background:var(--card);border:1px solid var(--line);border-radius:1.1rem;padding:.35rem;gap:.3rem;box-shadow:0 6px 18px rgba(0,0,0,.08);margin-block:0 1rem;max-width:calc(52rem - 2rem)}
+.tabs a{display:inline-flex;align-items:center;gap:.5rem;border:0;border-radius:.8rem;padding:.6rem 1rem;flex:1 1 auto;justify-content:center}
+.tabs a[aria-current=page]{background:var(--acc);color:var(--on);border:0}
+@media(max-width:34rem){.tabs a span{font-size:.85rem}.hero h1{font-size:1.45rem}}
+.tabs a{text-decoration:none}.hero.compact{padding:.7rem 0 2.4rem}.hero.compact .chips,.hero.compact h1 span{display:none}.hero.compact h1{font-size:1.3rem}

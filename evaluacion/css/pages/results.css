@@ -1,0 +1,22 @@
+.score{font:700 3.2rem/1 Georgia,serif}
+.score.p{color:var(--ok)}
+.score.f{color:var(--bad)}
+.rev{border-left:5px solid var(--line);padding:.4rem 0 .4rem .9rem;margin:.9rem 0}
+.rev.ok{border-color:var(--ok)}
+.rev.no{border-color:var(--bad)}
+.rev.sk{border-color:var(--warn)}
+.bigring{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.bigring .ring text{font-size:19px}
+.bigring.p .rv{stroke:var(--ok)}
+.bigring.f .rv{stroke:var(--bad)}
+.vd{margin:0;text-align:center;font-size:1.35rem}
+.vd small{display:block}
+.res{text-align:center;background:linear-gradient(180deg,var(--soft),var(--card) 60%)}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1rem 0}
+.kp div{background:var(--card);border:1px solid var(--line);border-radius:.8rem;padding:.5rem;font-size:.85rem;color:var(--mute)}
+.kp b{display:block;font-size:1.4rem;color:var(--ink)}
+.kp b.up{color:var(--ok)}
+.kp b.dn{color:var(--bad)}
+.res .row{justify-content:center}
+.rev{border-radius:.3rem;background:var(--card);padding:.7rem .9rem;border:1px solid var(--line);border-left-width:6px}
+.res .btn{text-decoration:none}

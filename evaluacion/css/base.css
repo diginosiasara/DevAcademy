@@ -1,0 +1,22 @@
+*{box-sizing:border-box}
+html{font-size:100%;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1{font:700 1.6rem/1.2 Georgia,serif;margin:0}
+h2{font-size:1.3rem;margin:0 0 .75rem}
+h3{font-size:1.1rem;margin:1.6rem 0 .6rem}
+h2:focus{outline:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:.5rem;top:-4rem;background:var(--acc);color:var(--on);padding:.6rem 1rem;border-radius:.5rem;z-index:9}
+.skip:focus{top:.5rem}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+fieldset{border:0;margin:0 0 1.25rem;padding:0;min-width:0}
+legend{font-weight:700;padding:0;margin-bottom:.5rem}
+.note,small,.m{color:var(--mute);font-size:.9rem}
+.note{margin:.4rem 0}
+input[type=search]{width:100%;min-height:2.75rem;padding:.5rem .8rem;font:inherit;border:2px solid var(--line);border-radius:.65rem;background:var(--card);color:var(--ink)}
+dialog{border:1px solid var(--line);border-radius:1rem;background:var(--card);color:var(--ink);max-width:28rem;padding:1.25rem}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+a{color:var(--acc)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+body{background:radial-gradient(60rem 30rem at 85% -5%,var(--soft),transparent 60%),var(--bg)}
+h2{font:800 1.5rem/1.2 Georgia,serif}

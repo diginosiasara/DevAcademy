@@ -1,0 +1,11 @@
+.card.ud.a{--c:var(--u5)}
+.card.ud.b{--c:var(--u6)}
+.card.ud{--c:var(--u5);border-left:6px solid var(--c);margin:.6rem 0;padding:.4rem 1rem 1rem}
+.card.ud summary{padding-block:.5rem;list-style:none}
+.card.ud summary::-webkit-details-marker{display:none}
+.card.ud summary::after{content:"▾";margin-left:.4rem;color:var(--mute)}
+.card.ud[open] summary::after{content:"▴"}
+.card.ud .tb{flex:1}
+.card.ud .tb small{font-weight:400}
+.card.ud ul{padding-left:1.2rem}
+.card.ud h4{margin:1rem 0 .3rem;color:var(--c)}
