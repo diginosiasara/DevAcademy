@@ -1,6 +1,6 @@
 # Simulacro · Programación orientada a objetos (UF2405 · UF2406)
 
-Abre `index.html` (sin servidor y sin conexión). Para los enlaces del Panel de conocimiento, descomprime `manuales.zip` para que existan `manuales/` y `manuales/extras/` junto a las páginas.
+Descomprime el zip completo en una carpeta y abre `index.html` (sin servidor y sin conexión). Los manuales están incluidos en `manuales/` (`UF2405.pdf`, `UF2406.pdf` y `extras/`); no muevas esa carpeta, porque el Panel de conocimiento enlaza a ella.
 
 ## Páginas (una por pantalla)
 | Archivo | Pantalla | Controlador |
