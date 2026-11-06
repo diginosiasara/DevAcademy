@@ -6,7 +6,7 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, 
 const strip = (s) => s.replace(/<[^>]+>/g, "");
 export const mod = (id) => MODULES.find((m) => m.id === id);
 
-export function layout({ title, desc, path, depth = 0, body, ld = [], active = "", bodyAttrs = "", type = "website" }) {
+export function layout({ title, desc, path, depth = 0, body, ld = [], active = "", bodyAttrs = "", type = "website", robots = "index,follow,max-image-preview:large" }) {
   const root = "../".repeat(depth), url = SITE.url + "/" + path;
   return `<!DOCTYPE html>
 <html lang="${SITE.lang}" data-root="${root}">
@@ -15,22 +15,26 @@ export function layout({ title, desc, path, depth = 0, body, ld = [], active = "
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
-<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="${SITE.themeColor}">
+<meta name="robots" content="${robots}"><meta name="theme-color" content="${SITE.themeColor}">
 <meta property="og:type" content="${type}"><meta property="og:site_name" content="${SITE.name}"><meta property="og:locale" content="${SITE.locale}">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(desc)}">
-<link rel="icon" href="${root}favicon.svg" type="image/svg+xml"><link rel="manifest" href="${root}manifest.webmanifest">
+<link rel="icon" href="${root}favicon.svg" type="image/svg+xml"><link rel="manifest" href="${root}manifest.webmanifest"><link rel="search" type="application/opensearchdescription+xml" title="${SITE.name}" href="${root}opensearch.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
-${["tokens", "base", "layout", "components", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
+${["tokens", "base", "layout", "components", "search", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 ${ld.map(J).join("\n")}
-<script type="module" src="${root}js/main.js"></script>
+<script defer src="${root}js/app.js"></script>
 </head>
 <body ${bodyAttrs}>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="top"><div class="wrap">
 <a class="logo" href="${root}index.html" aria-label="${SITE.name}, inicio">Dev<b>Academy</b></a>
+<form class="search" role="search" action="${root}buscar.html" method="get"><label for="q" class="sr">Buscar en el curso</label>
+<input id="q" name="q" type="search" role="combobox" aria-expanded="false" aria-controls="sugg" aria-autocomplete="list" aria-haspopup="listbox" aria-describedby="q-help" autocomplete="off" enterkeyhint="search" placeholder="Buscar en el curso…">
+<span id="q-help" class="sr">Escribe para ver sugerencias. Flechas arriba y abajo para moverte, Intro para abrir, Escape para cerrar. Atajo: barra inclinada.</span>
+<ul id="sugg" role="listbox" aria-label="Sugerencias de búsqueda" hidden></ul></form>
 <nav class="nav" aria-label="Principal"><a href="${root}index.html"${active === "inicio" ? ' aria-current="page"' : ""}>Inicio</a><a href="${root}temario.html"${active === "temario" ? ' aria-current="page"' : ""}>Temario</a>
 <button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
 </div></header>
@@ -70,6 +74,7 @@ export function home() {
 <section class="cta reveal"><h2 style="margin-top:0">Tu talento, tu código, tu futuro.</h2><p class="lead" style="margin-inline:auto">Empieza hoy la primera lección. Sin registro, sin coste.</p><a class="btn p" href="lecciones/${LESSONS[0].id}.html" data-cta="empezar-final">Empezar el curso →</a></section>`;
   return layout({ title: `${SITE.name} · Curso de ${SITE.course} gratis`, desc: "Aprende programación orientada a objetos paso a paso: abstracción, clases, herencia, polimorfismo y excepciones con ejemplos en Java. Tu talento, tu código, tu futuro.", path: "", body, active: "inicio",
     ld: [{ "@context": "https://schema.org", "@type": "Course", name: SITE.course, description: "Curso de POO con ejemplos en Java.", inLanguage: "es", provider: { "@type": "Organization", name: SITE.name, url: SITE.url, slogan: SITE.slogan }, hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: `PT${mins}M` }, isAccessibleForFree: true },
+      { "@context": "https://schema.org", "@type": "WebSite", name: SITE.name, url: SITE.url + "/", inLanguage: "es", potentialAction: { "@type": "SearchAction", target: { "@type": "EntryPoint", urlTemplate: `${SITE.url}/buscar.html?q={search_term_string}` }, "query-input": "required name=search_term_string" } },
       { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f[0], acceptedAnswer: { "@type": "Answer", text: f[1] } })) }] });
 }
 
@@ -97,4 +102,12 @@ export function lesson(l) {
   return layout({ title: `${l.t} · ${m.t} | ${SITE.name}`, desc: l.s + " Curso de programación orientada a objetos.", path: `lecciones/${l.id}.html`, depth: 1, body, type: "article", active: "temario", bodyAttrs: `data-total="${LESSONS.length}" data-ids="${LESSONS.map((x) => x.id)}"`,
     ld: [{ "@context": "https://schema.org", "@type": "LearningResource", headline: l.t, description: l.s, inLanguage: "es", keywords: l.tags.join(", "), timeRequired: `PT${l.min}M`, isPartOf: { "@type": "Course", name: SITE.course }, publisher: { "@type": "Organization", name: SITE.name }, url },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [["Inicio", SITE.url + "/"], ["Temario", SITE.url + "/temario.html"], [l.t, url]].map((c, k) => ({ "@type": "ListItem", position: k + 1, name: c[0], item: c[1] })) }] });
+}
+
+export function searchPage() {
+  const body = `<h1 id="h1" tabindex="-1">Buscar en el curso</h1><p id="summary" class="lead">Cargando resultados…</p>
+<noscript><p>La búsqueda necesita JavaScript. Puedes recorrer todas las lecciones desde el <a href="temario.html">temario</a>.</p></noscript>
+<ol id="results" class="results" aria-label="Resultados de búsqueda"></ol>
+<p>¿No encuentras lo que buscas? Consulta el <a href="temario.html">temario completo</a>.</p>`;
+  return layout({ title: `Buscar · ${SITE.name}`, desc: "Busca lecciones, conceptos y ejemplos del curso de programación orientada a objetos.", path: "buscar.html", body, robots: "noindex,follow" });
 }

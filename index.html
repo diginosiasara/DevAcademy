@@ -9,23 +9,29 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="DevAcademy"><meta property="og:locale" content="es_ES">
 <meta property="og:title" content="DevAcademy · Curso de Programación Orientada a Objetos gratis"><meta property="og:description" content="Aprende programación orientada a objetos paso a paso: abstracción, clases, herencia, polimorfismo y excepciones con ejemplos en Java. Tu talento, tu código, tu futuro."><meta property="og:url" content="https://devacademy.example/">
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="DevAcademy · Curso de Programación Orientada a Objetos gratis"><meta name="twitter:description" content="Aprende programación orientada a objetos paso a paso: abstracción, clases, herencia, polimorfismo y excepciones con ejemplos en Java. Tu talento, tu código, tu futuro.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="manifest.webmanifest"><link rel="search" type="application/opensearchdescription+xml" title="DevAcademy" href="opensearch.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/search.css">
 <link rel="stylesheet" href="css/animations.css">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Programación Orientada a Objetos","description":"Curso de POO con ejemplos en Java.","inLanguage":"es","provider":{"@type":"Organization","name":"DevAcademy","url":"https://devacademy.example","slogan":"Tu talento, tu código, tu futuro."},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT63M"},"isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"DevAcademy","url":"https://devacademy.example/","inLanguage":"es","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://devacademy.example/buscar.html?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito saber programar antes?","acceptedAnswer":{"@type":"Answer","text":"No. El curso parte de la abstracción y los paradigmas y avanza hasta herencia, polimorfismo y excepciones con ejemplos en Java."}},{"@type":"Question","name":"¿Cuánto dura el curso de programación orientada a objetos?","acceptedAnswer":{"@type":"Answer","text":"Son 10 lecciones de unos 63 minutos de lectura en total, más ejercicios de autoevaluación."}},{"@type":"Question","name":"¿Se guarda mi progreso?","acceptedAnswer":{"@type":"Answer","text":"Sí, en tu propio navegador. No necesitas crear cuenta ni compartir datos."}},{"@type":"Question","name":"¿Qué lenguaje se usa en los ejemplos?","acceptedAnswer":{"@type":"Answer","text":"Java, por ser un lenguaje orientado a objetos de uso extendido; los conceptos se aplican igual en C#, Python o PHP."}}]}</script>
-<script type="module" src="js/main.js"></script>
+<script defer src="js/app.js"></script>
 </head>
 <body >
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="top"><div class="wrap">
 <a class="logo" href="index.html" aria-label="DevAcademy, inicio">Dev<b>Academy</b></a>
+<form class="search" role="search" action="buscar.html" method="get"><label for="q" class="sr">Buscar en el curso</label>
+<input id="q" name="q" type="search" role="combobox" aria-expanded="false" aria-controls="sugg" aria-autocomplete="list" aria-haspopup="listbox" aria-describedby="q-help" autocomplete="off" enterkeyhint="search" placeholder="Buscar en el curso…">
+<span id="q-help" class="sr">Escribe para ver sugerencias. Flechas arriba y abajo para moverte, Intro para abrir, Escape para cerrar. Atajo: barra inclinada.</span>
+<ul id="sugg" role="listbox" aria-label="Sugerencias de búsqueda" hidden></ul></form>
 <nav class="nav" aria-label="Principal"><a href="index.html" aria-current="page">Inicio</a><a href="temario.html">Temario</a>
 <button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
 </div></header>

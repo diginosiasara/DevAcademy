@@ -1,2 +1,2 @@
-{ "name": "devacademy", "version": "1.0.0", "type": "module", "private": true,
+{ "name": "devacademy", "version": "1.0.0", "type": "module", "private": true, "devDependencies": { "esbuild": "^0.25.0" },
   "scripts": { "build": "node build/build.mjs", "serve": "npx serve ." } }
