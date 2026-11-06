@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" data-root="../">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Encapsulación y ocultación de información · Objetos y clases | DevAcademy</title>
+<meta name="description" content="Separar interfaz e implementación para proteger el estado. Curso de programación orientada a objetos.">
+<link rel="canonical" href="https://devacademy.example/lecciones/poo-05.html">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#07070D">
+<meta property="og:type" content="article"><meta property="og:site_name" content="DevAcademy"><meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Encapsulación y ocultación de información · Objetos y clases | DevAcademy"><meta property="og:description" content="Separar interfaz e implementación para proteger el estado. Curso de programación orientada a objetos."><meta property="og:url" content="https://devacademy.example/lecciones/poo-05.html">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Encapsulación y ocultación de información · Objetos y clases | DevAcademy"><meta name="twitter:description" content="Separar interfaz e implementación para proteger el estado. Curso de programación orientada a objetos.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="manifest" href="../manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Encapsulación y ocultación de información","description":"Separar interfaz e implementación para proteger el estado.","inLanguage":"es","keywords":"encapsulación, interfaz, private","timeRequired":"PT6M","isPartOf":{"@type":"Course","name":"Programación Orientada a Objetos"},"publisher":{"@type":"Organization","name":"DevAcademy"},"url":"https://devacademy.example/lecciones/poo-05.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://devacademy.example/"},{"@type":"ListItem","position":2,"name":"Temario","item":"https://devacademy.example/temario.html"},{"@type":"ListItem","position":3,"name":"Encapsulación y ocultación de información","item":"https://devacademy.example/lecciones/poo-05.html"}]}</script>
+<script type="module" src="../js/main.js"></script>
+</head>
+<body data-total="10" data-ids="poo-01,poo-02,poo-03,poo-04,poo-05,poo-06,poo-07,poo-08,poo-09,poo-10">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+<a class="logo" href="../index.html" aria-label="DevAcademy, inicio">Dev<b>Academy</b></a>
+<nav class="nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../temario.html" aria-current="page">Temario</a>
+<button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
+</div></header>
+<main id="contenido" tabindex="-1"><div class="wrap"><nav class="crumbs" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../temario.html">Temario</a></li><li><a href="../temario.html#m2">Objetos y clases</a></li><li aria-current="page">Encapsulación y ocultación de información</li></ol></nav>
+<div class="layout" data-mod="m2"><aside aria-label="Lecciones del curso"><nav aria-label="Lecciones"><strong data-mod="m1">Fundamentos del paradigma</strong><ol><li><a href="poo-01.html">Abstracción y paradigmas</a></li><li><a href="poo-02.html">¿Qué es un lenguaje orientado a objetos?</a></li><li><a href="poo-03.html">Estructurada frente a orientada a objetos</a></li></ol><strong data-mod="m2">Objetos y clases</strong><ol><li><a href="poo-04.html">Objetos, clases y mensajes</a></li><li><a href="poo-05.html" aria-current="page">Encapsulación y ocultación de información</a></li></ol><strong data-mod="m3">Herencia y polimorfismo</strong><ol><li><a href="poo-06.html">Herencia y jerarquías de clases</a></li><li><a href="poo-07.html">Polimorfismo y enlace dinámico</a></li></ol><strong data-mod="m4">Robustez y recursos</strong><ol><li><a href="poo-08.html">Excepciones: errores como objetos</a></li><li><a href="poo-09.html">Memoria y recolector de basura</a></li></ol><strong data-mod="m5">De los objetos al sistema</strong><ol><li><a href="poo-10.html">POO en la web y en las bases de datos</a></li></ol></nav></aside>
+<article class="prose"><p><span class="tag">encapsulación</span><span class="tag">interfaz</span><span class="tag">private</span></p><h1 id="h1" tabindex="-1">Encapsulación y ocultación de información</h1>
+<p><small>Lección 5 de 10 · 6 min de lectura · Fuente: POO-01</small></p>
+<nav class="toc" aria-label="En esta lección"><strong>En esta lección</strong><ul><li><a href="#vistas">Dos vistas del objeto</a></li></ul></nav><h2 id="vistas">Dos vistas del objeto</h2><p>Cuando hay una división estricta entre la vista interna y la externa hablamos de <strong>encapsulación</strong>: la <em>interfaz</em> (qué sabe hacer) es visible y la <em>implementación</em> (cómo) permanece oculta.</p>
+<pre><code><span class="k">public class</span> Cuenta {
+  <span class="k">private double</span> saldo;
+  <span class="k">public void</span> ingresar(<span class="k">double</span> c) {
+    <span class="k">if</span> (c &lt;= 0) <span class="k">throw new</span> IllegalArgumentException();
+    saldo += c;
+  }
+}</code></pre>
+<p>Beneficios: comunicación clara en el equipo, programas autodocumentados y cambios internos sin romper a quien usa el objeto.</p>
+<details><summary>Autoevaluación</summary><p><strong>¿Por qué el atributo <code>saldo</code> es privado?</strong></p><p>Para que solo se modifique mediante métodos que validan los datos.</p></details>
+<p><button class="btn p" id="done" type="button" data-id="poo-05" aria-pressed="false">Marcar como completada</button></p>
+<nav class="pager" aria-label="Navegación entre lecciones"><a class="btn" rel="prev" href="poo-04.html">← Objetos, clases y mensajes</a><a class="btn p" rel="next" href="poo-06.html" data-cta="siguiente">Herencia y jerarquías de clases →</a></nav></article></div></div></main>
+<footer class="foot"><div class="wrap"><p><strong>DevAcademy</strong> · Tu talento, tu código, tu futuro.</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. Tu progreso se guarda solo en este navegador.</p></div></footer>
+<div class="sr" role="status" aria-live="polite" id="live"></div>
+</body></html>

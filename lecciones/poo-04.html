@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" data-root="../">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Objetos, clases y mensajes · Objetos y clases | DevAcademy</title>
+<meta name="description" content="Estado, comportamiento, instancias y comunicación entre objetos. Curso de programación orientada a objetos.">
+<link rel="canonical" href="https://devacademy.example/lecciones/poo-04.html">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#07070D">
+<meta property="og:type" content="article"><meta property="og:site_name" content="DevAcademy"><meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Objetos, clases y mensajes · Objetos y clases | DevAcademy"><meta property="og:description" content="Estado, comportamiento, instancias y comunicación entre objetos. Curso de programación orientada a objetos."><meta property="og:url" content="https://devacademy.example/lecciones/poo-04.html">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Objetos, clases y mensajes · Objetos y clases | DevAcademy"><meta name="twitter:description" content="Estado, comportamiento, instancias y comunicación entre objetos. Curso de programación orientada a objetos.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="manifest" href="../manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Objetos, clases y mensajes","description":"Estado, comportamiento, instancias y comunicación entre objetos.","inLanguage":"es","keywords":"clase, objeto, mensaje","timeRequired":"PT8M","isPartOf":{"@type":"Course","name":"Programación Orientada a Objetos"},"publisher":{"@type":"Organization","name":"DevAcademy"},"url":"https://devacademy.example/lecciones/poo-04.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://devacademy.example/"},{"@type":"ListItem","position":2,"name":"Temario","item":"https://devacademy.example/temario.html"},{"@type":"ListItem","position":3,"name":"Objetos, clases y mensajes","item":"https://devacademy.example/lecciones/poo-04.html"}]}</script>
+<script type="module" src="../js/main.js"></script>
+</head>
+<body data-total="10" data-ids="poo-01,poo-02,poo-03,poo-04,poo-05,poo-06,poo-07,poo-08,poo-09,poo-10">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+<a class="logo" href="../index.html" aria-label="DevAcademy, inicio">Dev<b>Academy</b></a>
+<nav class="nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../temario.html" aria-current="page">Temario</a>
+<button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
+</div></header>
+<main id="contenido" tabindex="-1"><div class="wrap"><nav class="crumbs" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../temario.html">Temario</a></li><li><a href="../temario.html#m2">Objetos y clases</a></li><li aria-current="page">Objetos, clases y mensajes</li></ol></nav>
+<div class="layout" data-mod="m2"><aside aria-label="Lecciones del curso"><nav aria-label="Lecciones"><strong data-mod="m1">Fundamentos del paradigma</strong><ol><li><a href="poo-01.html">Abstracción y paradigmas</a></li><li><a href="poo-02.html">¿Qué es un lenguaje orientado a objetos?</a></li><li><a href="poo-03.html">Estructurada frente a orientada a objetos</a></li></ol><strong data-mod="m2">Objetos y clases</strong><ol><li><a href="poo-04.html" aria-current="page">Objetos, clases y mensajes</a></li><li><a href="poo-05.html">Encapsulación y ocultación de información</a></li></ol><strong data-mod="m3">Herencia y polimorfismo</strong><ol><li><a href="poo-06.html">Herencia y jerarquías de clases</a></li><li><a href="poo-07.html">Polimorfismo y enlace dinámico</a></li></ol><strong data-mod="m4">Robustez y recursos</strong><ol><li><a href="poo-08.html">Excepciones: errores como objetos</a></li><li><a href="poo-09.html">Memoria y recolector de basura</a></li></ol><strong data-mod="m5">De los objetos al sistema</strong><ol><li><a href="poo-10.html">POO en la web y en las bases de datos</a></li></ol></nav></aside>
+<article class="prose"><p><span class="tag">clase</span><span class="tag">objeto</span><span class="tag">mensaje</span></p><h1 id="h1" tabindex="-1">Objetos, clases y mensajes</h1>
+<p><small>Lección 4 de 10 · 8 min de lectura · Fuente: POO-01</small></p>
+<nav class="toc" aria-label="En esta lección"><strong>En esta lección</strong><ul><li><a href="#objeto">Objeto y clase</a></li><li><a href="#mensajes">Mensajes y métodos</a></li></ul></nav><h2 id="objeto">Objeto y clase</h2><p>Un objeto encapsula un <strong>estado</strong> (datos) y un <strong>comportamiento</strong> (operaciones). Los objetos se agrupan en clases y cada objeto es una instancia de una.</p>
+<pre><code><span class="k">public class</span> Libro {
+  <span class="k">private</span> String titulo;
+  <span class="k">public</span> Libro(String titulo) { <span class="k">this</span>.titulo = titulo; }
+  <span class="k">public</span> String getTitulo() { <span class="k">return</span> titulo; }
+}
+Libro l = <span class="k">new</span> Libro(<span class="s">"Clean Code"</span>);</code></pre>
+<h2 id="mensajes">Mensajes y métodos</h2><p>Se envía un mensaje a un objeto con <code>receptor.selector(argumentos)</code>; el objeto decide qué método ejecutar. A diferencia de una llamada a procedimiento, el receptor es conocido y la interpretación puede variar según su clase.</p>
+<div class="note">Piensa en <strong>responsabilidades</strong>: no preguntes qué puedes hacer con tus datos, pregunta qué pueden hacer ellos por ti.</div>
+<details><summary>Autoevaluación</summary><p><strong>¿Qué diferencia un mensaje de una llamada a función?</strong></p><p>El mensaje tiene receptor, y su interpretación depende de la clase de ese receptor.</p></details>
+<p><button class="btn p" id="done" type="button" data-id="poo-04" aria-pressed="false">Marcar como completada</button></p>
+<nav class="pager" aria-label="Navegación entre lecciones"><a class="btn" rel="prev" href="poo-03.html">← Estructurada frente a orientada a objetos</a><a class="btn p" rel="next" href="poo-05.html" data-cta="siguiente">Encapsulación y ocultación de información →</a></nav></article></div></div></main>
+<footer class="foot"><div class="wrap"><p><strong>DevAcademy</strong> · Tu talento, tu código, tu futuro.</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. Tu progreso se guarda solo en este navegador.</p></div></footer>
+<div class="sr" role="status" aria-live="polite" id="live"></div>
+</body></html>

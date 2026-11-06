@@ -1,0 +1,18 @@
+{
+  "name": "DevAcademy",
+  "short_name": "DevAcademy",
+  "description": "Tu talento, tu código, tu futuro.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07070D",
+  "theme_color": "#07070D",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

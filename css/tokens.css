@@ -1,0 +1,17 @@
+/* TOKENS: única capa con valores de diseño (color, espacio, tipografía). */
+:root{
+  --font:Sora,system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:14px;--ease:cubic-bezier(.2,.8,.2,1);
+  --bg:#07070D;--bg2:#0D0D18;--surf:#11111E;--surf2:#1A1A2B;--tx:#EEF0FA;--mut:#A3A9C2;--bd:#262640;
+  --c1:#6B7CFF;--c2:#7CFF7A;--c3:#FF7AD5;--c4:#9BE7FF;--c5:#FFC76B;
+  --acc:var(--c1);--on-acc:#0A0A14;--ring:#9BE7FF;--code:#090912;--codetx:#EDEDF5;
+  --glow:0 0 0 1px color-mix(in srgb,var(--acc) 45%,transparent),0 12px 40px -12px color-mix(in srgb,var(--acc) 55%,transparent);
+  color-scheme:dark}
+:root[data-theme="light"]{
+  --bg:#F6F6FC;--bg2:#EDEDF8;--surf:#FFFFFF;--surf2:#EEEEF8;--tx:#14141F;--mut:#4A4F66;--bd:#D3D5E8;
+  --c1:#3F4FD9;--c2:#0B7A3B;--c3:#B0309A;--c4:#0B6E8A;--c5:#8A5A00;
+  --acc:var(--c1);--on-acc:#fff;--ring:#3F4FD9;--code:#11111A;color-scheme:light}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F6F6FC;--bg2:#EDEDF8;--surf:#FFFFFF;--surf2:#EEEEF8;--tx:#14141F;--mut:#4A4F66;--bd:#D3D5E8;
+  --c1:#3F4FD9;--c2:#0B7A3B;--c3:#B0309A;--c4:#0B6E8A;--c5:#8A5A00;--acc:var(--c1);--on-acc:#fff;--ring:#3F4FD9;--code:#11111A;color-scheme:light}}
+[data-mod="m1"]{--m:var(--c1)}[data-mod="m2"]{--m:var(--c2)}[data-mod="m3"]{--m:var(--c3)}[data-mod="m4"]{--m:var(--c4)}[data-mod="m5"]{--m:var(--c5)}

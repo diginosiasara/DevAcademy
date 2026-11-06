@@ -1,0 +1,12 @@
+/* LAYOUT: cabecera, pie, rejillas y estructura de páginas. */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top,0)}
+.top .wrap{display:flex;align-items:center;gap:1rem;min-height:4rem;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.25rem;text-decoration:none;color:var(--tx)}.logo b{color:var(--acc)}
+.nav{display:flex;gap:.25rem;margin-left:auto;align-items:center}
+.nav a{min-height:44px;display:inline-flex;align-items:center;padding:0 1rem;border-radius:10px;text-decoration:none;color:var(--tx);font-weight:600;position:relative}
+.nav a[aria-current="page"]{color:var(--acc)}.nav a[aria-current="page"]::after{content:"";position:absolute;left:1rem;right:1rem;bottom:6px;height:2px;background:var(--acc);border-radius:2px}
+.hero{display:grid;gap:2.5rem;align-items:center}@media(min-width:860px){.hero{grid-template-columns:1.1fr .9fr}}
+.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));list-style:none;padding:0;margin:0 0 1rem}
+.layout{display:grid;gap:2.5rem}@media(min-width:920px){.layout{grid-template-columns:280px minmax(0,1fr)}.layout aside{position:sticky;top:5.5rem;align-self:start;max-height:calc(100vh - 7rem);overflow:auto}}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem}
+.foot{border-top:1px solid var(--bd);padding:2rem 0 calc(2rem + env(safe-area-inset-bottom,0));color:var(--mut);font-size:.9rem;background:var(--bg2)}

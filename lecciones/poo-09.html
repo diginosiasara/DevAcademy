@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" data-root="../">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Memoria y recolector de basura · Robustez y recursos | DevAcademy</title>
+<meta name="description" content="Reserva de memoria y liberación automática de objetos sin uso. Curso de programación orientada a objetos.">
+<link rel="canonical" href="https://devacademy.example/lecciones/poo-09.html">
+<meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#07070D">
+<meta property="og:type" content="article"><meta property="og:site_name" content="DevAcademy"><meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Memoria y recolector de basura · Robustez y recursos | DevAcademy"><meta property="og:description" content="Reserva de memoria y liberación automática de objetos sin uso. Curso de programación orientada a objetos."><meta property="og:url" content="https://devacademy.example/lecciones/poo-09.html">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Memoria y recolector de basura · Robustez y recursos | DevAcademy"><meta name="twitter:description" content="Reserva de memoria y liberación automática de objetos sin uso. Curso de programación orientada a objetos.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="manifest" href="../manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/animations.css">
+<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","headline":"Memoria y recolector de basura","description":"Reserva de memoria y liberación automática de objetos sin uso.","inLanguage":"es","keywords":"memoria, garbage collector, JVM","timeRequired":"PT5M","isPartOf":{"@type":"Course","name":"Programación Orientada a Objetos"},"publisher":{"@type":"Organization","name":"DevAcademy"},"url":"https://devacademy.example/lecciones/poo-09.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://devacademy.example/"},{"@type":"ListItem","position":2,"name":"Temario","item":"https://devacademy.example/temario.html"},{"@type":"ListItem","position":3,"name":"Memoria y recolector de basura","item":"https://devacademy.example/lecciones/poo-09.html"}]}</script>
+<script type="module" src="../js/main.js"></script>
+</head>
+<body data-total="10" data-ids="poo-01,poo-02,poo-03,poo-04,poo-05,poo-06,poo-07,poo-08,poo-09,poo-10">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+<a class="logo" href="../index.html" aria-label="DevAcademy, inicio">Dev<b>Academy</b></a>
+<nav class="nav" aria-label="Principal"><a href="../index.html">Inicio</a><a href="../temario.html" aria-current="page">Temario</a>
+<button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
+</div></header>
+<main id="contenido" tabindex="-1"><div class="wrap"><nav class="crumbs" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../temario.html">Temario</a></li><li><a href="../temario.html#m4">Robustez y recursos</a></li><li aria-current="page">Memoria y recolector de basura</li></ol></nav>
+<div class="layout" data-mod="m4"><aside aria-label="Lecciones del curso"><nav aria-label="Lecciones"><strong data-mod="m1">Fundamentos del paradigma</strong><ol><li><a href="poo-01.html">Abstracción y paradigmas</a></li><li><a href="poo-02.html">¿Qué es un lenguaje orientado a objetos?</a></li><li><a href="poo-03.html">Estructurada frente a orientada a objetos</a></li></ol><strong data-mod="m2">Objetos y clases</strong><ol><li><a href="poo-04.html">Objetos, clases y mensajes</a></li><li><a href="poo-05.html">Encapsulación y ocultación de información</a></li></ol><strong data-mod="m3">Herencia y polimorfismo</strong><ol><li><a href="poo-06.html">Herencia y jerarquías de clases</a></li><li><a href="poo-07.html">Polimorfismo y enlace dinámico</a></li></ol><strong data-mod="m4">Robustez y recursos</strong><ol><li><a href="poo-08.html">Excepciones: errores como objetos</a></li><li><a href="poo-09.html" aria-current="page">Memoria y recolector de basura</a></li></ol><strong data-mod="m5">De los objetos al sistema</strong><ol><li><a href="poo-10.html">POO en la web y en las bases de datos</a></li></ol></nav></aside>
+<article class="prose"><p><span class="tag">memoria</span><span class="tag">garbage collector</span><span class="tag">JVM</span></p><h1 id="h1" tabindex="-1">Memoria y recolector de basura</h1>
+<p><small>Lección 9 de 10 · 5 min de lectura · Fuente: POO-03</small></p>
+<nav class="toc" aria-label="En esta lección"><strong>En esta lección</strong><ul><li><a href="#reserva">Reserva y recolección</a></li></ul></nav><h2 id="reserva">Reserva y recolección</h2><p>La reserva toma parte de la memoria disponible para una aplicación. El <strong>recolector de basura</strong> escanea la memoria de la máquina virtual y libera la que ya no se usa, reutilizándola automáticamente.</p>
+<p>Esto evita fugas, pero la memoria sigue siendo limitada: en dispositivos pequeños, como en la KVM de J2ME, crear objetos innecesarios tiene coste. Estrategias clásicas de reserva: <em>First Fit</em>, <em>Buddy System</em> y <em>Suballocators</em>.</p>
+<details><summary>Autoevaluación</summary><p><strong>¿Qué hace el recolector de basura?</strong></p><p>Libera automáticamente la memoria de los objetos que ya no se utilizan.</p></details>
+<p><button class="btn p" id="done" type="button" data-id="poo-09" aria-pressed="false">Marcar como completada</button></p>
+<nav class="pager" aria-label="Navegación entre lecciones"><a class="btn" rel="prev" href="poo-08.html">← Excepciones: errores como objetos</a><a class="btn p" rel="next" href="poo-10.html" data-cta="siguiente">POO en la web y en las bases de datos →</a></nav></article></div></div></main>
+<footer class="foot"><div class="wrap"><p><strong>DevAcademy</strong> · Tu talento, tu código, tu futuro.</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. Tu progreso se guarda solo en este navegador.</p></div></footer>
+<div class="sr" role="status" aria-live="polite" id="live"></div>
+</body></html>

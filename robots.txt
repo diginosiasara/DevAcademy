@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://devacademy.example/sitemap.xml
