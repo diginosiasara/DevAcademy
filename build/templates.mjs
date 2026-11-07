@@ -22,7 +22,7 @@ export function layout({ title, desc, path, depth = 0, body, ld = [], active = "
 <link rel="icon" href="${root}favicon.svg" type="image/svg+xml"><link rel="manifest" href="${root}manifest.webmanifest"><link rel="search" type="application/opensearchdescription+xml" title="${SITE.name}" href="${root}opensearch.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
-${["tokens", "base", "layout", "components", "search", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
+${["tokens", "base", "layout", "components", "wiki", "search", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 ${ld.map(J).join("\n")}
 <script defer src="${root}js/app.js"></script>
@@ -36,7 +36,7 @@ ${ld.map(J).join("\n")}
 <span id="q-help" class="sr">Escribe para ver sugerencias. Flechas arriba y abajo para moverte, Intro para abrir, Escape para cerrar. Atajo: barra inclinada.</span>
 <ul id="sugg" role="listbox" aria-label="Sugerencias de búsqueda" hidden></ul></form>
 <nav class="nav" aria-label="Principal"><a href="${root}index.html"${active === "inicio" ? ' aria-current="page"' : ""}>Inicio</a><a href="${root}temario.html"${active === "temario" ? ' aria-current="page"' : ""}>Temario</a>
-<button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐ Tema</button></nav>
+<button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐<span class="hide-sm"> Tema</span></button></nav>
 </div></header>
 <main id="contenido" tabindex="-1"><div class="wrap">${body}</div></main>
 <footer class="foot"><div class="wrap"><p><strong>${SITE.name}</strong> · ${SITE.slogan}</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. Tu progreso se guarda solo en este navegador.</p></div></footer>
@@ -69,7 +69,7 @@ export function home() {
   }
 }</code></pre></div></section>
 <h2 class="reveal">Cómo aprenderás</h2><ul class="grid">${[["1 · Lee", "Lecciones breves con índice, términos clave y fuente del compendio.", "m1"], ["2 · Practica", "Ejemplos de código listos para copiar y probar.", "m2"], ["3 · Comprueba", "Una pregunta de autoevaluación y progreso guardado.", "m3"]].map((c, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="${c[2]}"><h3>${c[0]}</h3><p>${c[1]}</p></div></li>`).join("")}</ul>
-<h2 class="reveal">Módulos del curso</h2><ul class="grid">${MODULES.map((m, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="${m.id}"><h3>${m.t}</h3><p>${m.d}</p><a href="temario.html#${m.id}">${LESSONS.filter((l) => l.m === m.id).length} lecciones →</a></div></li>`).join("")}</ul>
+<h2 class="reveal">Módulos del curso</h2><ul class="grid mods">${MODULES.map((m, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="${m.id}"><h3>${m.t}</h3><p>${m.d}</p><a href="temario.html#${m.id}">${LESSONS.filter((l) => l.m === m.id).length} lecciones →</a></div></li>`).join("")}</ul>
 <h2 class="reveal">Preguntas frecuentes</h2>${FAQ.map((f) => `<details class="reveal"><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("")}
 <section class="cta reveal"><h2 style="margin-top:0">Tu talento, tu código, tu futuro.</h2><p class="lead" style="margin-inline:auto">Empieza hoy la primera lección. Sin registro, sin coste.</p><a class="btn p" href="lecciones/${LESSONS[0].id}.html" data-cta="empezar-final">Empezar el curso →</a></section>`;
   return layout({ title: `${SITE.name} · Curso de ${SITE.course} gratis`, desc: "Aprende programación orientada a objetos paso a paso: abstracción, clases, herencia, polimorfismo y excepciones con ejemplos en Java. Tu talento, tu código, tu futuro.", path: "", body, active: "inicio",
@@ -88,16 +88,19 @@ ${MODULES.map((m) => `<section id="${m.id}" data-module data-mod="${m.id}" aria-
 }
 
 export function lesson(l) {
-  const i = LESSONS.indexOf(l), m = mod(l.m), p = LESSONS[i - 1], n = LESSONS[i + 1];
+  const i = LESSONS.indexOf(l), m = mod(l.m), p = LESSONS[i - 1], n = LESSONS[i + 1], num = String(i + 1).padStart(2, "0");
   const toc = [...l.h.matchAll(/<h2 id="([^"]+)">(.*?)<\/h2>/g)];
-  const body = `<nav class="crumbs" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../temario.html">Temario</a></li><li><a href="../temario.html#${m.id}">${m.t}</a></li><li aria-current="page">${l.t}</li></ol></nav>
-<div class="layout" data-mod="${l.m}"><aside aria-label="Lecciones del curso"><nav aria-label="Lecciones">${MODULES.map((x) => `<strong data-mod="${x.id}">${x.t}</strong><ol>${LESSONS.filter((y) => y.m === x.id).map((y) => `<li><a href="${y.id}.html"${y === l ? ' aria-current="page"' : ""}>${y.t}</a></li>`).join("")}</ol>`).join("")}</nav></aside>
-<article class="prose"><p>${l.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</p><h1 id="h1" tabindex="-1">${l.t}</h1>
-<p><small>Lección ${i + 1} de ${LESSONS.length} · ${l.min} min de lectura · Fuente: ${l.src}</small></p>
-<nav class="toc" aria-label="En esta lección"><strong>En esta lección</strong><ul>${toc.map((t) => `<li><a href="#${t[1]}">${t[2]}</a></li>`).join("")}</ul></nav>${l.h}
-<details><summary>Autoevaluación</summary><p><strong>${l.q[0]}</strong></p><p>${l.q[1]}</p></details>
+  const html = l.h.replace(/<h2 id="([^"]+)">(.*?)<\/h2>/g, '<h2 id="$1">$2<a class="anchor" href="#$1" aria-label="Enlace directo a la sección $2">#</a></h2>').replace(/<pre>/g, '<pre data-lang="Java" tabindex="0" role="region" aria-label="Ejemplo de código">');
+  const tocLinks = toc.map((t) => `<li><a href="#${t[1]}">${t[2]}</a></li>`).join("");
+  const body = `<div class="readbar" aria-hidden="true"></div><nav class="crumbs" aria-label="Migas de pan"><ol><li><a href="../index.html">Inicio</a></li><li><a href="../temario.html">Temario</a></li><li><a href="../temario.html#${m.id}">${m.t}</a></li><li aria-current="page">${l.t}</li></ol></nav>
+<div class="layout wiki" data-mod="${l.m}"><aside aria-label="Lecciones del curso"><details class="course-nav" open><summary>Lecciones del curso <span class="mp" data-mod-ids="${LESSONS.map((y) => y.id)}"></span></summary><nav aria-label="Lecciones">${MODULES.map((x) => { const ls = LESSONS.filter((y) => y.m === x.id); return `<strong data-mod="${x.id}"><span>${x.t}</span><span class="mp" data-mod-ids="${ls.map((y) => y.id)}"></span></strong><ol>${ls.map((y) => `<li data-lesson-id="${y.id}" data-mod="${x.id}"><a href="${y.id}.html"${y === l ? ' aria-current="page"' : ""}>${y.t}</a></li>`).join("")}</ol>`; }).join("")}</nav></details></aside>
+<article class="prose"><header class="lesson-head" data-n="${num}"><p>${l.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</p><h1 id="h1" tabindex="-1">${l.t}</h1><p class="lead">${l.s}</p>
+<dl class="facts"><div><dt>Módulo</dt><dd><a href="../temario.html#${m.id}">${m.t}</a></dd></div><div><dt>Lección</dt><dd>${i + 1} de ${LESSONS.length}</dd></div><div><dt>Lectura</dt><dd>${l.min} min</dd></div><div><dt>Fuente</dt><dd>${l.src}</dd></div></dl></header>
+<details class="toc-inline" open><summary>En esta lección</summary><ul>${tocLinks}</ul></details>${html}
+<details class="q"><summary>Autoevaluación</summary><p><strong>${l.q[0]}</strong></p><p>${l.q[1]}</p></details>
 <p><button class="btn p" id="done" type="button" data-id="${l.id}" aria-pressed="false">Marcar como completada</button></p>
-<nav class="pager" aria-label="Navegación entre lecciones">${p ? `<a class="btn" rel="prev" href="${p.id}.html">← ${p.t}</a>` : "<span></span>"}${n ? `<a class="btn p" rel="next" href="${n.id}.html" data-cta="siguiente">${n.t} →</a>` : `<a class="btn p" href="../temario.html">Volver al temario</a>`}</nav></article></div>`;
+<nav class="pager" aria-label="Navegación entre lecciones">${p ? `<a class="pg prev" rel="prev" href="${p.id}.html"><small>← Anterior</small><span>${p.t}</span></a>` : "<span></span>"}${n ? `<a class="pg next" rel="next" href="${n.id}.html" data-cta="siguiente"><small>Siguiente →</small><span>${n.t}</span></a>` : `<a class="pg next" href="../temario.html"><small>Fin del curso</small><span>Volver al temario</span></a>`}</nav></article>
+<aside class="toc-side" aria-label="En esta lección"><nav aria-label="En esta lección"><strong>En esta lección</strong><ul>${tocLinks}</ul></nav></aside></div>`;
   const url = `${SITE.url}/lecciones/${l.id}.html`;
   return layout({ title: `${l.t} · ${m.t} | ${SITE.name}`, desc: l.s + " Curso de programación orientada a objetos.", path: `lecciones/${l.id}.html`, depth: 1, body, type: "article", active: "temario", bodyAttrs: `data-total="${LESSONS.length}" data-ids="${LESSONS.map((x) => x.id)}"`,
     ld: [{ "@context": "https://schema.org", "@type": "LearningResource", headline: l.t, description: l.s, inLanguage: "es", keywords: l.tags.join(", "), timeRequired: `PT${l.min}M`, isPartOf: { "@type": "Course", name: SITE.course }, publisher: { "@type": "Organization", name: SITE.name }, url },

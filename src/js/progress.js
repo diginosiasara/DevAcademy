@@ -14,6 +14,7 @@ export function paint() {
   const p = t ? Math.round((n / t) * 100) : 0;
   const m = document.getElementById("meter");
   if (m) { m.style.setProperty("--w", p + "%"); m.parentElement.setAttribute("aria-valuenow", p); }
+  document.querySelectorAll("[data-mod-ids]").forEach((e) => { const ids = e.dataset.modIds.split(","), k = ids.filter((i) => done.includes(i)).length; e.textContent = `${k}/${ids.length}`; e.setAttribute("aria-label", `${k} de ${ids.length} lecciones completadas`); });
   const lbl = document.getElementById("pct"); if (lbl) lbl.textContent = p + "%";
 }
 export function initProgress() {
