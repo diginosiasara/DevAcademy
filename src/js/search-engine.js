@@ -8,7 +8,7 @@ const STOP = new Set("a al algo ante como con cual cuando de del e el ella en en
 const SYN = { error: ["excepcion"], errores: ["excepcion"], fallo: ["excepcion"], basura: ["garbage", "memoria"], bd: ["base de datos", "relacional"], sql: ["relacional"], datos: ["persistencia"],
   subclase: ["herencia", "extends"], padre: ["herencia"], hijo: ["herencia"], privado: ["encapsulacion", "private"], ocultar: ["encapsulacion", "abstraccion"], oculta: ["encapsulacion"],
   poo: ["objetos"], oop: ["objetos"], metodo: ["mensaje"], funcion: ["metodo"], atributo: ["estado"], variable: ["estado"], sobreescritura: ["override", "polimorfismo"], interfaz: ["encapsulacion"],
-  java: ["class"], constructor: ["new"], web: ["capas"], tabla: ["relacional"] };
+  java: ["class"], consulta: ["select"], sentencia: ["select"], agil: ["scrum", "xp"], agiles: ["scrum", "xp"], driver: ["jdbc"], inyeccion: ["preparedstatement"], transaccion: ["commit", "rollback"], archivo: ["fichero"], fichero: ["archivo"], red: ["socket", "tcp"], servidor: ["servlet"], javascript: ["dom"], normal: ["normalizacion"], joins: ["join"], jar: ["paquete"], constructor: ["new"], web: ["capas"], tabla: ["relacional"] };
 export const terms = (q) => { const t = tok(q).filter((x) => x.length > 1 || /\d/.test(x)), f = t.filter((x) => !STOP.has(x)); return f.length ? f : t; };
 const stem = (t) => t.replace(/(ciones|cion|es|s)$/, "");
 const variants = (t) => { const out = new Map([[t, 1]]); const s = stem(t); if (s.length > 2) out.set(s, .9); (SYN[t] || SYN[s] || []).forEach((v) => out.set(norm(v), .7)); return [...out]; };

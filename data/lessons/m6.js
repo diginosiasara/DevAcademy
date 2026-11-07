@@ -28,6 +28,7 @@ static void renombrar(Persona p) { p.nombre = "Ana"; }  // sí afecta al objeto
 static void reasignar(Persona p) { p = new Persona(); }  // no afecta fuera
 
 int x = 5; cambiar(x);            // x sigue valiendo 5</code></pre>
+<h2 id="almacenamiento">Almacenamiento de las variables</h2><p>Las variables locales y los parámetros viven en la <strong>pila</strong> (<em>stack</em>) de cada llamada y desaparecen al terminar; los objetos viven en el <strong>montículo</strong> (<em>heap</em>). Los atributos <code>static</code> pertenecen a la clase y existen una sola vez.</p>
 <p>Dentro de una clase, las llamadas pueden ser <em>cualificadas</em> (<code>otro.metodo()</code>) o no cualificadas (<code>metodo()</code>, sobre la instancia actual).</p>`,
  q:["Si un método reasigna su parámetro objeto, ¿cambia la variable del llamador?","No: se pasó una copia de la referencia, y reasignarla no afecta a la original."],
  ex:"Escribe un método intercambiar(int a, int b) y comprueba por qué no puede intercambiar las variables del llamador." }

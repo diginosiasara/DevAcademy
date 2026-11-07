@@ -1,6 +1,7 @@
 /* Contenido del curso. ÚNICA fuente de verdad: build/build.mjs genera de aquí todas las páginas.
    Fuentes: MF0227_3 (UF2404 y UF2405), Booch «Análisis y diseño orientado a objetos» y documentos de apoyo. */
 import m1 from "./lessons/m1.js"; import m2 from "./lessons/m2.js"; import m3 from "./lessons/m3.js"; import m4 from "./lessons/m4.js"; import m5 from "./lessons/m5.js";
+import * as X from "./lessons/extra.js"; import m11 from "./lessons/m11.js"; import m12 from "./lessons/m12.js";
 import m6 from "./lessons/m6.js"; import m7 from "./lessons/m7.js"; import m8 from "./lessons/m8.js"; import m9 from "./lessons/m9.js"; import m10 from "./lessons/m10.js";
 
 export const MODULES = [
@@ -13,8 +14,19 @@ export const MODULES = [
   { id: "m7", t: "Estructuras de datos y memoria", d: "Arrays, colecciones y recolección de basura." },
   { id: "m8", t: "Lenguajes orientados a objetos", d: "Clasificación y comparación de Java, C++, C#, Python y PHP." },
   { id: "m9", t: "Implementación en Java", d: "Excepciones, eventos, hilos, red y acceso a datos." },
-  { id: "m10", t: "Web y bases de datos", d: "Arquitectura multicapa, SQL y persistencia con JDBC." },
+  { id: "m10", t: "Arquitectura de aplicaciones web", d: "Cliente ligero, protocolos, multicapa, MVC y capa de presentación." },
+  { id: "m11", t: "Bases de datos relacionales", d: "Modelo E-R, DDL, DML, JOIN, subconsultas y del relacional a los objetos." },
+  { id: "m12", t: "Acceso a datos desde aplicaciones", d: "JDBC, consultas, procedimientos almacenados, transacciones y DAO." },
 ];
-const all = [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10];
+const [abs, kay, estr, compl, ciclo, modul] = m1, [obj, clase, encap, msg, prog] = m2, [tipArr, colec, memo] = m7, [lenguajes] = m8, [exc, eventos] = m9;
+const all = [
+  [abs, kay, estr, compl, X.ing, ciclo, X.met, modul],
+  [obj, X.tipos, clase, encap, msg, prog],
+  m3, m4, m5, m6,
+  [tipArr, colec, X.ficheros, memo],
+  [lenguajes, X.librerias],
+  [X.entorno, X.basicas, X.caso, exc, eventos, X.hilos, X.red],
+  m10, m11, m12,
+];
 let n = 0;
 export const LESSONS = all.flatMap((ls, i) => ls.map((l) => ({ ...l, id: `poo-${String(++n).padStart(2, "0")}`, m: `m${i + 1}` })));

@@ -4,7 +4,7 @@
 ## Arquitectura (una responsabilidad por archivo)
 | Capa | Archivos | Responsabilidad |
 |---|---|---|
-| Datos | `data/content.js`, `data/lessons/m1…m10.js`, `data/glossary.js`, `data/site.js` | 33 lecciones en 10 módulos (una por módulo), glosario y configuración |
+| Datos | `data/content.js`, `data/lessons/m1…m10.js`, `data/glossary.js`, `data/site.js` | 57 lecciones en 12 módulos (un archivo por módulo, más `extra.js`), glosario de 73 términos y configuración |
 | Resaltado | `build/highlight.mjs` | Colorea código Java y SQL en la compilación |
 | Generación | `build/templates.mjs`, `build/build.mjs` | Plantillas puras → HTML estático, sitemap, robots, manifest |
 | Estilos | `css/tokens` · `base` · `layout` · `components` · `animations` | Diseño por capas; el movimiento está aislado |
@@ -34,4 +34,4 @@
 - Sinónimos editables en `src/js/search-engine.js` (`SYN`).
 
 ## Contenido
-Basado en MF0227_3: UF2404 (Principios de la POO, UD1–UD9), UF2405 (Modelo de programación web y bases de datos), Booch (Análisis y diseño orientado a objetos) y la guía de INTECO sobre metodologías y ciclos de vida. Cada lección tiene ideas clave, ejemplos en Java/SQL, práctica y autoevaluación; el glosario enlaza cada término con su lección.
+Basado en MF0227_3: UF2404 (Principios de la POO, UD1–UD9), UF2405 (Modelo de programación web y bases de datos), Booch (Análisis y diseño orientado a objetos) y la guía de INTECO sobre metodologías y ciclos de vida. Cubre UF2404 completo (UD1–UD9) y UF2405 completo (UD1–UD7), más el tutorial de entorno (JDK, NetBeans, MySQL). Cada lección tiene ideas clave, ejemplos en Java/SQL, práctica y autoevaluación; el glosario enlaza cada término con su lección.

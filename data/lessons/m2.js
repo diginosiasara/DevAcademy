@@ -47,6 +47,7 @@ miCoche.acelerar(30);</code></pre>
     }
     public double getSaldo() { return saldo; }
 }</code></pre>
+<h2 id="interfaz-clase">Relación entre interfaz y clase</h2><p>La <strong>interfaz</strong> de una clase es el conjunto de métodos públicos que ofrece; la clase es la implementación completa. En Java, además, <code>interface</code> permite declarar solo el contrato y que varias clases lo implementen.</p>
 <div class="note"><strong>Beneficio:</strong> si mañana cambia cómo se calcula <code>getSaldo()</code>, el código que usa la clase no tiene que modificarse.</div>`,
  q:["¿Por qué el atributo saldo es privado?","Para que solo se modifique mediante métodos que validan los datos."],
  ex:"Añade a Cuenta un método retirar() que impida dejar el saldo en negativo." },
