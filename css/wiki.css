@@ -61,3 +61,16 @@ aside a[aria-current="page"]{box-shadow:inset 3px 0 0 var(--m,var(--acc))}
 @media(min-width:920px){.course-nav>summary{display:none}}
 @media(max-width:640px){.hide-sm{display:none}.nav a{padding:0 .7rem}.top .wrap{gap:.4rem 1rem}.lesson-head{padding:1.2rem}.lesson-head::after{font-size:5rem}}
 .prose,.layout>*{min-width:0}
+/* ideas clave, práctica, glosario y código */
+.t{color:#9BE7FF}.n{color:#FFC76B}
+.keys{margin:0 0 1.6rem;padding:1.1rem 1.3rem;border-radius:16px;border:1px solid color-mix(in srgb,var(--m) 35%,var(--bd));background:linear-gradient(135deg,color-mix(in srgb,var(--m) 12%,var(--surf)),var(--surf))}
+.prose .keys h2{border:0;margin:0 0 .4rem;padding:0;font:700 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--m)}.prose .keys h2::before{display:none}
+.keys ul{margin:0;padding-left:1.2rem}.keys li{margin:.25rem 0}
+.practice{margin:2rem 0 0;padding:1.1rem 1.3rem;border-radius:16px;border:2px dashed color-mix(in srgb,var(--m) 55%,var(--bd))}
+.prose .practice h2{margin:0 0 .3rem;padding:0;font-size:1.1rem}.prose .practice h2::before{display:none}.practice p{margin:0}
+.az{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.2rem 0}.az a{min-width:44px;min-height:44px;display:grid;place-items:center;border:1px solid var(--bd);border-radius:10px;background:var(--surf);font-weight:800;text-decoration:none}.az a:hover{background:var(--acc);color:var(--on-acc)}
+.terms{display:grid;gap:.8rem;margin:0}.terms div{background:var(--surf);border:1px solid var(--bd);border-left:5px solid var(--c1);border-radius:12px;padding:.8rem 1rem}.terms div:target{border-color:var(--c3);box-shadow:var(--glow)}
+.terms dt{font-weight:800}.terms dd{margin:.2rem 0 0;color:var(--mut)}
+details.mod{background:none;border:0;border-radius:0;padding:0;margin:.3rem 0}
+details.mod>summary{min-height:44px;display:flex;justify-content:space-between;align-items:center;gap:.5rem;font-weight:700;font-size:.92rem;color:var(--m);padding:0 .4rem;border-radius:8px;cursor:pointer}
+details.mod>summary:hover{background:var(--surf2)}details.mod[open]>summary{border-bottom:1px solid var(--bd);border-radius:8px 8px 0 0}

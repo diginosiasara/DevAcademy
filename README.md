@@ -4,7 +4,8 @@
 ## Arquitectura (una responsabilidad por archivo)
 | Capa | Archivos | Responsabilidad |
 |---|---|---|
-| Datos | `data/content.js`, `data/site.js` | Contenido del curso (del Word) y configuración del sitio |
+| Datos | `data/content.js`, `data/lessons/m1…m10.js`, `data/glossary.js`, `data/site.js` | 33 lecciones en 10 módulos (una por módulo), glosario y configuración |
+| Resaltado | `build/highlight.mjs` | Colorea código Java y SQL en la compilación |
 | Generación | `build/templates.mjs`, `build/build.mjs` | Plantillas puras → HTML estático, sitemap, robots, manifest |
 | Estilos | `css/tokens` · `base` · `layout` · `components` · `animations` | Diseño por capas; el movimiento está aislado |
 | Comportamiento (fuentes) | `src/js/`: `main` · `store` · `progress` · `filter` · `search-engine` · `search-ui` · `theme` · `reveal` · `analytics` | Mejora progresiva (la web funciona sin JS) |
@@ -31,3 +32,6 @@
 - Tolera erratas, tildes, plurales, sinónimos y palabras vacías; ofrece «¿quisiste decir…?».
 - Combobox ARIA 1.2, avisos en región viva, atajo `/`, teclas ↑ ↓ Inicio Fin Intro Esc.
 - Sinónimos editables en `src/js/search-engine.js` (`SYN`).
+
+## Contenido
+Basado en MF0227_3: UF2404 (Principios de la POO, UD1–UD9), UF2405 (Modelo de programación web y bases de datos), Booch (Análisis y diseño orientado a objetos) y la guía de INTECO sobre metodologías y ciclos de vida. Cada lección tiene ideas clave, ejemplos en Java/SQL, práctica y autoevaluación; el glosario enlaza cada término con su lección.

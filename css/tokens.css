@@ -14,4 +14,4 @@
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
   --bg:#F6F6FC;--bg2:#EDEDF8;--surf:#FFFFFF;--surf2:#EEEEF8;--tx:#14141F;--mut:#4A4F66;--bd:#D3D5E8;
   --c1:#3F4FD9;--c2:#0B7A3B;--c3:#B0309A;--c4:#0B6E8A;--c5:#8A5A00;--acc:var(--c1);--on-acc:#fff;--ring:#3F4FD9;--code:#11111A;color-scheme:light}}
-[data-mod="m1"]{--m:var(--c1)}[data-mod="m2"]{--m:var(--c2)}[data-mod="m3"]{--m:var(--c3)}[data-mod="m4"]{--m:var(--c4)}[data-mod="m5"]{--m:var(--c5)}
+[data-mod="m1"]{--m:var(--c1)}[data-mod="m2"]{--m:var(--c2)}[data-mod="m3"]{--m:var(--c3)}[data-mod="m4"]{--m:var(--c4)}[data-mod="m5"]{--m:var(--c5)}[data-mod="m6"]{--m:var(--c1)}[data-mod="m7"]{--m:var(--c2)}[data-mod="m8"]{--m:var(--c3)}[data-mod="m9"]{--m:var(--c4)}[data-mod="m10"]{--m:var(--c5)}

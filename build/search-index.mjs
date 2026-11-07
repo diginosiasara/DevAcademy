@@ -11,7 +11,7 @@ export function buildIndex() {
     const parts = l.h.split(/(?=<h2 id=")/).filter((p) => p.startsWith("<h2"));
     const common = { lesson: l.id, lessonTitle: l.t, mod: l.m, module: m.t, tags: l.tags };
     docs.push({ ...common, id: l.id, kind: "lesson", order: order++, url: base, anchor: "", title: l.t, heading: "", summary: l.s,
-      heads: parts.map((p) => text(p.match(/<h2[^>]*>(.*?)<\/h2>/)[1])), text: text(l.h) + " " + text(l.q.join(" ")), code: codeOf(l.h) });
+      heads: parts.map((p) => text(p.match(/<h2[^>]*>(.*?)<\/h2>/)[1])), text: text(l.h) + " " + (l.sum || []).join(" ") + " " + (l.ex || "") + " " + text(l.q.join(" ")), code: codeOf(l.h) });
     parts.forEach((p) => { const id = p.match(/id="([^"]+)"/)[1], t = text(p.match(/<h2[^>]*>(.*?)<\/h2>/)[1]);
       docs.push({ ...common, id: `${l.id}#${id}`, kind: "section", order: order++, url: `${base}#${id}`, anchor: id, title: t, heading: t, summary: "", heads: [], text: text(p.replace(/<h2[\s\S]*?<\/h2>/, "")), code: codeOf(p) }); });
   });
