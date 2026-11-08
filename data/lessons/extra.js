@@ -66,6 +66,28 @@ try {
 } catch (IOException e) {
     e.printStackTrace();
 }</code></pre>
+<h2 id="bytes">Flujos de bytes</h2><p>Para datos binarios (imágenes, copias exactas) se usan <code>FileInputStream</code> y <code>FileOutputStream</code>, que leen y escriben bytes sin interpretar texto.</p>
+<pre><code>try (FileInputStream in = new FileInputStream("origen.bin");
+     FileOutputStream out = new FileOutputStream("copia.bin")) {
+    byte[] buffer = new byte[4096];
+    int leidos;
+    while ((leidos = in.read(buffer)) != -1) out.write(buffer, 0, leidos);
+}</code></pre>
+<h2 id="serializacion">Serialización de objetos</h2><p>Serializar es convertir un objeto en una secuencia de bytes para guardarlo o enviarlo. La clase debe implementar <code>Serializable</code>; los atributos <code>transient</code> no se guardan.</p>
+<pre><code>class Alumno implements Serializable {
+    private static final long serialVersionUID = 1L;
+    String nombre;
+    transient String clave;            // no se serializa
+    Alumno(String n, String c) { nombre = n; clave = c; }
+}
+
+try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("alumno.bin"))) {
+    o.writeObject(new Alumno("Ana", "secreto"));
+}
+try (ObjectInputStream i = new ObjectInputStream(new FileInputStream("alumno.bin"))) {
+    Alumno a = (Alumno) i.readObject();
+    System.out.println(a.nombre + " " + a.clave);   // Ana null
+}</code></pre>
 <div class="note"><code>try-with-resources</code> cierra el fichero automáticamente, incluso si ocurre una excepción.</div>`,
  q:["¿Por qué usar try-with-resources al trabajar con ficheros?","Para cerrar el recurso siempre, evitando fugas aunque haya errores."], ex:"Lee un fichero de notas «nombre;nota» y calcula la nota media." };
 
@@ -97,6 +119,8 @@ export const entorno = { t:"Elegir lenguaje, tipos de aplicaciones y entorno de 
  h:`<h2 id="eleccion">Elección del lenguaje</h2><p>Se decide según el tipo de aplicación, el rendimiento necesario, la plataforma, la experiencia del equipo, las librerías disponibles y el mantenimiento a largo plazo. Java destaca por su portabilidad («compila una vez, ejecuta en cualquier lugar»), su ecosistema y su uso empresarial.</p>
 <h2 id="aplicaciones">Tipos de aplicaciones</h2><ul><li><strong>Escritorio:</strong> interfaz gráfica local (Swing, JavaFX).</li><li><strong>Web:</strong> se ejecutan en un servidor y se usan con navegador.</li><li><strong>Móviles:</strong> Android (Java o Kotlin), iOS.</li><li><strong>Servicios y APIs:</strong> sin interfaz, consumidos por otras aplicaciones.</li><li><strong>Empotradas:</strong> dentro de dispositivos.</li></ul>
 <h2 id="herramientas">Herramientas de desarrollo</h2><p>Necesitas el <strong>JDK</strong> (compilador <code>javac</code>, máquina virtual <code>java</code>, herramientas) y un <strong>IDE</strong> (Entorno Integrado de Desarrollo) como NetBeans, Eclipse o IntelliJ IDEA. Con una base de datos como <strong>MySQL</strong> completas el entorno para aplicaciones con datos. Otras herramientas: control de versiones (Git), gestores de construcción (Maven, Gradle) y depuradores.</p>
+<h2 id="instalacion">Instalación y variables de entorno</h2><p>Tras instalar el JDK hay que definir <code>JAVA_HOME</code> (carpeta del JDK) y añadir su subcarpeta <code>bin</code> al <code>PATH</code> para poder usar <code>javac</code> y <code>java</code> desde la consola. Se comprueba con <code>java -version</code>.</p>
+<h2 id="ides">Entornos y editores</h2><ul><li><strong>NetBeans:</strong> proyectos, plantillas, depurador, gestor de plugins y soporte para bases de datos.</li><li><strong>Eclipse:</strong> se organiza en <em>workspaces</em>; se crean clases con <em>New &gt; Class</em>.</li><li><strong>Editores ligeros</strong> (Notepad++): coloreado y autocompletado, sin proyecto ni depurador.</li></ul>
 <pre><code>// Ciclo manual: escribir, compilar y ejecutar
 // Hola.java
 public class Hola {
@@ -193,6 +217,7 @@ t.setPriority(Thread.NORM_PRIORITY);
 t.start();   // nunca run() directamente
 t.join();    // espera a que termine</code></pre>
 <h2 id="estados">Estados</h2><div class="scroll"><table><caption class="sr">Estados de un hilo</caption><thead><tr><th scope="col">Estado</th><th scope="col">Significado</th></tr></thead><tbody><tr><th scope="row">NEW</th><td>Creado, sin iniciar</td></tr><tr><th scope="row">RUNNABLE</th><td>Listo o ejecutándose</td></tr><tr><th scope="row">BLOCKED / WAITING</th><td>Esperando un monitor, <code>wait()</code> o <code>sleep()</code></td></tr><tr><th scope="row">TERMINATED</th><td>Ha acabado su <code>run()</code></td></tr></tbody></table></div>
+<h2 id="metodos">Métodos útiles</h2><div class="scroll"><table><caption class="sr">Métodos de Thread</caption><thead><tr><th scope="col">Método</th><th scope="col">Efecto</th></tr></thead><tbody><tr><th scope="row"><code>sleep(ms)</code></th><td>Pausa el hilo actual</td></tr><tr><th scope="row"><code>yield()</code></th><td>Cede el turno a otros hilos</td></tr><tr><th scope="row"><code>isAlive()</code></th><td>Indica si el hilo sigue en marcha</td></tr><tr><th scope="row"><code>join()</code></th><td>Espera a que termine</td></tr><tr><th scope="row"><code>interrupt()</code></th><td>Solicita que se detenga</td></tr></tbody></table></div><p>Para <strong>parar</strong> un hilo no se usa <code>stop()</code> (obsoleto e inseguro): se consulta una bandera o <code>isInterrupted()</code> dentro de <code>run()</code>.</p>
 <h2 id="sincronizacion">Sincronización y comunicación</h2><p>Si dos hilos modifican el mismo dato hay una <strong>condición de carrera</strong>. <code>synchronized</code> garantiza acceso exclusivo; <code>wait()</code> y <code>notify()</code> permiten que un hilo espere una condición y otro le avise.</p>
 <pre><code>class Buzon {
     private String mensaje;
@@ -235,5 +260,11 @@ try (Socket s = new Socket("localhost", 5000);
     out.println("Hola");
     System.out.println(in.readLine());
 }</code></pre>
+<h2 id="udp">UDP y multidifusión</h2><p>Además de TCP, existe <strong>UDP</strong>: sin conexión y sin garantía de entrega, pero rápido. Java lo ofrece con <code>DatagramSocket</code> y, para enviar a un grupo, <code>MulticastSocket</code>.</p>
+<pre><code>try (DatagramSocket s = new DatagramSocket()) {
+    byte[] datos = "hola".getBytes();
+    s.send(new DatagramPacket(datos, datos.length, InetAddress.getByName("localhost"), 6000));
+}</code></pre>
+<p>En el lado del cliente web aparecen también los <em>plug-ins</em>, los <em>scripts</em> y componentes como <em>ActiveX</em> que amplían el navegador.</p>
 <div class="note">Esta es la base de la web: un navegador es un cliente y un servidor web atiende sus peticiones HTTP.</div>`,
  q:["¿Qué hace accept() en el servidor?","Bloquea hasta que llega un cliente y devuelve el socket de esa conexión."], ex:"Haz que el servidor devuelva el texto en mayúsculas." };

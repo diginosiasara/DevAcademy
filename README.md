@@ -4,7 +4,7 @@
 ## Arquitectura (una responsabilidad por archivo)
 | Capa | Archivos | Responsabilidad |
 |---|---|---|
-| Datos | `data/content.js`, `data/lessons/m1…m10.js`, `data/glossary.js`, `data/site.js` | 57 lecciones en 12 módulos (un archivo por módulo, más `extra.js`), glosario de 73 términos y configuración |
+| Datos | `data/content.js`, `data/lessons/m1…m10.js`, `data/glossary.js`, `data/site.js` | 74 lecciones en 12 módulos (un archivo por módulo, más `extra.js` y `extra2.js`), glosario de 106 términos y configuración |
 | Resaltado | `build/highlight.mjs` | Colorea código Java y SQL en la compilación |
 | Generación | `build/templates.mjs`, `build/build.mjs` | Plantillas puras → HTML estático, sitemap, robots, manifest |
 | Estilos | `css/tokens` · `base` · `layout` · `components` · `animations` | Diseño por capas; el movimiento está aislado |

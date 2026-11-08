@@ -49,6 +49,15 @@ CREATE TABLE MATRICULAS (
     alta        DATE DEFAULT CURRENT_DATE
 );</code></pre>
 <p>Restricciones habituales: <code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> y <code>DEFAULT</code>. Con <code>CREATE</code> también se crean bases de datos, <strong>vistas</strong>, <strong>índices</strong>, <strong>disparadores</strong> (triggers) y <strong>procedimientos almacenados</strong>.</p>
+<h2 id="database">Bases de datos y claves ajenas</h2><pre><code>CREATE DATABASE gestion;
+USE gestion;
+
+CREATE TABLE PEDIDOS (
+    id_pedido   INT PRIMARY KEY,
+    dni_cliente VARCHAR(10) NOT NULL,
+    FOREIGN KEY (dni_cliente) REFERENCES CLIENTES(dni_cliente)
+        ON DELETE CASCADE      -- al borrar el cliente se borran sus pedidos
+);</code></pre>
 <h2 id="alter">ALTER</h2><pre><code>ALTER TABLE CLIENTES ADD COLUMN telefono VARCHAR(15);
 ALTER TABLE CLIENTES DROP COLUMN telefono;</code></pre>
 <h2 id="drop">DROP y TRUNCATE</h2><pre><code>TRUNCATE TABLE LOG;      -- borra todas las filas, conserva la tabla
@@ -74,8 +83,15 @@ WHERE fecha &gt;= '2026-01-01';</code></pre>
 FROM PEDIDOS
 GROUP BY dni_cliente
 HAVING SUM(total) &gt; 1000;</code></pre>
+<h2 id="condiciones">Más condiciones</h2><pre><code>SELECT DISTINCT apellidos FROM CLIENTES;                    -- sin repetidos
+SELECT * FROM PEDIDOS WHERE total BETWEEN 100 AND 500;
+SELECT * FROM CLIENTES WHERE apellidos IN ('Gómez', 'Marín');
+SELECT * FROM CLIENTES c WHERE EXISTS
+    (SELECT 1 FROM PEDIDOS p WHERE p.dni_cliente = c.dni_cliente);
+SELECT * FROM PEDIDOS WHERE total &gt; ALL (SELECT total FROM PEDIDOS WHERE dni_cliente = '5689364V');</code></pre>
 <h2 id="insert">INSERT</h2><pre><code>INSERT INTO CLIENTES (dni_cliente, nombre, apellidos)
 VALUES ('74850399J', 'Irene', 'Marín Benítez');</code></pre>
+<p>También se puede insertar el resultado de una consulta: <code>INSERT INTO HISTORICO SELECT * FROM PEDIDOS WHERE fecha &lt; '2025-01-01';</code></p>
 <h2 id="update-delete">UPDATE y DELETE</h2><pre><code>UPDATE CLIENTES SET apellidos = 'Marín Gil' WHERE dni_cliente = '74850399J';
 DELETE FROM CLIENTES WHERE dni_cliente = '74850399J';</code></pre>
 <div class="note"><strong>Cuidado:</strong> sin <code>WHERE</code>, <code>UPDATE</code> y <code>DELETE</code> afectan a toda la tabla.</div>`,

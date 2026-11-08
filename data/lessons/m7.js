@@ -12,7 +12,16 @@ double media = 0;
 for (int n : notas) media += n;
 media /= notas.length;                // 7.33
 
-String[][] tablero = new String[3][3];   // array bidimensional</code></pre>`,
+String[][] tablero = new String[3][3];   // array bidimensional</code></pre>
+<h2 id="referencias">Referencias y matrices</h2><p>Un array es un objeto: la variable guarda una <em>referencia</em>. Asignar un array a otra variable no lo copia.</p>
+<pre><code>int[] a = {1, 2, 3};
+int[] b = a;            // misma referencia
+b[0] = 99;
+System.out.println(a[0]);   // 99
+
+int[][] m1 = {{1, 2}, {3, 4}}, m2 = {{5, 6}, {7, 8}}, suma = new int[2][2];
+for (int i = 0; i &lt; 2; i++)
+    for (int j = 0; j &lt; 2; j++) suma[i][j] = m1[i][j] + m2[i][j];</code></pre>`,
  q:["¿Qué pasa si accedes a notas[3]?","Se lanza ArrayIndexOutOfBoundsException."],
  ex:"Calcula el máximo de un array de enteros sin usar librerías." },
 { t:"Colecciones: listas, pilas, colas y tablas hash", min:8, src:"UF2404 · UD7 · 7.2.1 a 7.2.4", tags:["List","Stack","Queue","HashMap","árbol"],
@@ -44,6 +53,8 @@ System.out.println(edades.get("Ana"));</code></pre>
 <pre><code>Persona p = new Persona("Ana");
 p = null;                  // el objeto queda inalcanzable
 System.gc();               // solo una sugerencia, no una orden</code></pre>
+<h2 id="jvm">Parámetros de memoria de la JVM</h2><p>El tamaño del <em>heap</em> se configura al arrancar la máquina virtual: <code>-Xms</code> (inicial), <code>-Xmx</code> (máximo) y <code>-Xss</code> (pila de cada hilo). Si se agota, aparece <code>OutOfMemoryError</code>.</p>
+<pre><code>java -Xms256m -Xmx1g -Xss512k MiPrograma</code></pre>
 <h2 id="ventajas">Ventajas</h2><p>No hay «fugas» de memoria por olvidar liberar ni <em>punteros colgantes</em> (referencias a memoria ya liberada). Para recursos externos (ficheros, conexiones) usa <code>try-with-resources</code> y <code>close()</code> en vez de confiar en <code>finalize()</code>, que está obsoleto.</p>
 <p>En dispositivos con poca memoria (como móviles con J2ME) crear objetos innecesarios tiene coste. Técnicas clásicas de reserva: <em>First Fit</em>, <em>Buddy System</em> y <em>Suballocators</em>.</p>`,
  q:["¿Cuándo puede el recolector liberar un objeto?","Cuando es inalcanzable, es decir, no hay ninguna referencia que llegue a él."],

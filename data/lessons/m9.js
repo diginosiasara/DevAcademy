@@ -21,7 +21,10 @@ export default [
 void retirar(double c) throws SaldoInsuficienteException {
     if (c &gt; saldo) throw new SaldoInsuficienteException("Saldo insuficiente");
     saldo -= c;
-}</code></pre>`,
+}</code></pre>
+<h2 id="aserciones">Aserciones</h2><p>Una <strong>aserción</strong> comprueba una condición que el programador da por segura; si falla lanza <code>AssertionError</code>. Se activan con <code>java -ea</code> y no sirven para validar datos del usuario.</p>
+<pre><code>int saldo = calcular();
+assert saldo &gt;= 0 : "Saldo negativo: " + saldo;</code></pre>`,
  q:["¿Por qué catch (Exception e) debe ir el último?","Porque captura todo; si fuera primero, ocultaría a los catch específicos."],
  ex:"Lee un número con Scanner y repite la petición hasta que el usuario escriba un entero válido." },
 { t:"Eventos: programar la interacción", min:6, src:"UF2404 · UD9 · 9.16", tags:["eventos","listener","interfaz gráfica","callback"],
@@ -32,7 +35,15 @@ void retirar(double c) throws SaldoInsuficienteException {
 
 JButton boton = new JButton("Saludar");
 boton.addActionListener(e -&gt; JOptionPane.showMessageDialog(null, "¡Hola!"));</code></pre>
-<h2 id="tipos">Tipos</h2><p>Eventos generales (pulsar una tecla, mover el ratón) y eventos semánticos de alto nivel (pulsar un botón, elegir un elemento).</p>`,
+<h2 id="tipos">Tipos de eventos</h2><p><strong>De bajo nivel:</strong> ratón (pulsar, arrastrar, mover), teclado, foco y ventana. <strong>De alto nivel (semánticos):</strong> acción sobre un botón o campo, selección de un elemento, cambio de valor de una barra.</p>
+<h2 id="listeners">Oyentes y adaptadores</h2><div class="scroll"><table><caption class="sr">Oyentes de eventos</caption><thead><tr><th scope="col">Oyente</th><th scope="col">Evento</th><th scope="col">Adaptador</th></tr></thead><tbody><tr><th scope="row"><code>ActionListener</code></th><td>Botón, Intro en un campo</td><td>—</td></tr><tr><th scope="row"><code>MouseListener</code></th><td>Pulsar, entrar, salir</td><td><code>MouseAdapter</code></td></tr><tr><th scope="row"><code>KeyListener</code></th><td>Teclas</td><td><code>KeyAdapter</code></td></tr><tr><th scope="row"><code>WindowListener</code></th><td>Abrir, cerrar ventana</td><td><code>WindowAdapter</code></td></tr><tr><th scope="row"><code>FocusListener</code>, <code>ItemListener</code></th><td>Foco, selección</td><td>—</td></tr></tbody></table></div>
+<p>Un <strong>adaptador</strong> es una clase que ya implementa todos los métodos del oyente vacíos: solo redefines el que te interesa.</p>
+<pre><code>ventana.addWindowListener(new WindowAdapter() {
+    @Override public void windowClosing(WindowEvent e) {
+        System.out.println("Cerrando…");
+        System.exit(0);
+    }
+});</code></pre>`,
  q:["¿Quién recibe el evento: la fuente o el oyente?","El oyente registrado en la fuente."],
  ex:"Crea una ventana con un botón que cuente cuántas veces se ha pulsado." },
 { t:"Hilos: programación concurrente", min:8, src:"UF2404 · UD9 · 9.17", tags:["hilos","Thread","sincronización","concurrencia"],
