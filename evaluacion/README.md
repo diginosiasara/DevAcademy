@@ -17,7 +17,7 @@ Cada página carga solo los scripts y hojas de estilo que necesita (la lista est
 ## Capas y responsabilidad única
 | Capa | Archivos | Hace | No hace |
 |---|---|---|---|
-| `data/` | `questions`, `catalog`, `knowledge` | Contenido: 184 preguntas, unidades con temario y páginas del manual, puntos clave | Lógica |
+| `data/` | `questions`, `catalog`, `knowledge` | Contenido: 280 preguntas (184 del banco original + 96 del banco ampliado, campo `tipo:'ampliado'`), unidades con temario y páginas del manual, puntos clave | Lógica |
 | `js/core/` | `utils`, `storage`, `records`, `prefs`, `backup` | Utilidades puras; acceso a Storage; historial y fallos; preferencias; exportar/importar validado | DOM, reglas de negocio |
 | `js/domain/` | `bank`, `difficulty`, `scoring`, `session`, `stats`, `settings`, `selection` | Reglas: consulta, dificultad adaptativa, puntuación, máquina de estados, estadísticas, ajustes, selección | DOM, almacenamiento |
 | `js/services/` | `routes`, `runstore`, `launcher`, `clock`, `download` | Efectos del entorno: navegación, estado entre páginas, orquestación, temporizador, descargas | Pintar, reglas |

@@ -1,6 +1,7 @@
 /* DOMINIO · selección de preguntas a partir de los ajustes. */
 (function(P){'use strict';
-const base=(cfg,fail)=>cfg.fallas?P.stats.failedItems(fail):P.bank.inUnits(cfg.units);
+const byTipo=(cfg,l)=>cfg.tipo==='ampliado'?l.filter(q=>q.tipo==='ampliado'):cfg.tipo==='original'?l.filter(q=>q.tipo!=='ampliado'):l;
+const base=(cfg,fail)=>byTipo(cfg,cfg.fallas?P.stats.failedItems(fail):P.bank.inUnits(cfg.units));
 const available=(cfg,fail)=>base(cfg,fail).length;
 function pool(cfg,fail){let c=P.u.shuffle(base(cfg,fail));
  if(cfg.nivel!=='mix')c.sort((a,b)=>Math.abs(P.diff.eff(a,fail[a.k])-cfg.nivel)-Math.abs(P.diff.eff(b,fail[b.k])-cfg.nivel));

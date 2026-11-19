@@ -12,7 +12,7 @@ main.onclick=e=>{const p=e.target.closest('[data-p]');if(!p)return;const v=p.dat
  P.a11y.announce('Selección actualizada');P.a11y.focusEl(main.querySelector('#sum'))};
 main.onchange=e=>{const t=e.target;
  if(t.name==='unit'){cfg.fallas=false;t.checked?cfg.units.add(t.value):cfg.units.delete(t.value)}
- else if(t.name==='n')cfg.n=+t.value;else if(t.name==='nivel')cfg.nivel=t.value==='mix'?'mix':+t.value;
+ else if(t.name==='tipo')cfg.tipo=t.value;else if(t.name==='n')cfg.n=+t.value;else if(t.name==='nivel')cfg.nivel=t.value==='mix'?'mix':+t.value;
  else if(t.name==='mode')cfg.mode=t.value;else if(t.name==='factor')cfg.factor=+t.value;
  persist();summary()};
 main.onsubmit=e=>{e.preventDefault();P.launcher.begin(P.selection.pool(cfg,R.fail),P.selection.options(cfg))};
