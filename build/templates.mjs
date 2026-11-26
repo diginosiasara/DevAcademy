@@ -24,7 +24,7 @@ export function layout({ title, desc, path, depth = 0, body, ld = [], active = "
 <link rel="icon" href="${root}favicon.svg" type="image/svg+xml"><link rel="manifest" href="${root}manifest.webmanifest"><link rel="search" type="application/opensearchdescription+xml" title="${SITE.name}" href="${root}opensearch.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Sora:wght@400;600;800&display=swap">
-${["tokens", "base", "layout", "components", "wiki", "search", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
+${["tokens", "base", "layout", "components", "wiki", "repaso", "search", "animations"].map((f) => `<link rel="stylesheet" href="${root}css/${f}.css">`).join("\n")}
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("devacademy:theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 ${ld.map(J).join("\n")}
 <script defer src="${root}js/app.js"></script>
@@ -37,11 +37,11 @@ ${ld.map(J).join("\n")}
 <input id="q" name="q" type="search" role="combobox" aria-expanded="false" aria-controls="sugg" aria-autocomplete="list" aria-haspopup="listbox" aria-describedby="q-help" autocomplete="off" enterkeyhint="search" placeholder="Buscar en el curso…">
 <span id="q-help" class="sr">Escribe para ver sugerencias. Flechas arriba y abajo para moverte, Intro para abrir, Escape para cerrar. Atajo: barra inclinada.</span>
 <ul id="sugg" role="listbox" aria-label="Sugerencias de búsqueda" hidden></ul></form>
-<nav class="nav" aria-label="Principal"><a href="${root}index.html"${active === "inicio" ? ' aria-current="page"' : ""}>Inicio</a><a href="${root}temario.html"${active === "temario" ? ' aria-current="page"' : ""}>Temario</a><a href="${root}glosario.html"${active === "glosario" ? ' aria-current="page"' : ""}>Glosario</a>
+<nav class="nav" aria-label="Principal"><a href="${root}index.html"${active === "inicio" ? ' aria-current="page"' : ""}>Inicio</a><a href="${root}temario.html"${active === "temario" ? ' aria-current="page"' : ""}>Temario</a><a href="${root}repaso.html"${active === "repaso" ? ' aria-current="page"' : ""}>Repaso</a><a href="${root}glosario.html"${active === "glosario" ? ' aria-current="page"' : ""}>Glosario</a>
 <button class="btn" id="theme" type="button" aria-pressed="false" aria-label="Cambiar a tema claro u oscuro">◐<span class="hide-sm"> Tema</span></button></nav>
 </div></header>
 <main id="contenido" tabindex="-1"><div class="wrap">${body}</div></main>
-<footer class="foot"><div class="wrap"><p><strong>${SITE.name}</strong> · ${SITE.slogan}</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. Tu progreso se guarda solo en este navegador.</p></div></footer>
+<footer class="foot"><div class="wrap"><p><strong>${SITE.name}</strong> · ${SITE.slogan}</p><p>Contenido adaptado del Compendio de manuales UF2404–UF2406. <a href="${root}repaso.html">Apuntes de repaso</a> · <a href="${root}descargas/Guia_visual_estudio_UF2404_UF2405_UF2406.docx" download>Descargar guía en Word</a>. Tu progreso se guarda solo en este navegador.</p></div></footer>
 <div class="sr" role="status" aria-live="polite" id="live"></div>
 </body></html>`;
 }
@@ -52,6 +52,7 @@ const fixLinks = (h) => h; // los enlaces de tarjeta se ajustan por nivel en cad
 export const FAQ = [
   ["¿Necesito saber programar antes?", "No. El curso parte de la abstracción y los paradigmas y avanza hasta herencia, polimorfismo y excepciones con ejemplos en Java."],
   ["¿Cuánto dura el curso de programación orientada a objetos?", `Son ${LESSONS.length} lecciones de unos ${LESSONS.reduce((a, l) => a + l.min, 0)} minutos de lectura en total, más ejercicios de autoevaluación.`],
+  ["¿Hay apuntes para repasar antes del examen?", "Sí: la página de Repaso reúne esquemas, tablas, trucos memotécnicos, un autotest por unidad y una chuleta final, y puedes descargarla en Word."],
   ["¿Se guarda mi progreso?", "Sí, en tu propio navegador. No necesitas crear cuenta ni compartir datos."],
   ["¿Qué lenguaje se usa en los ejemplos?", "Java, por ser un lenguaje orientado a objetos de uso extendido; los conceptos se aplican igual en C#, Python o PHP."],
 ];
@@ -62,7 +63,7 @@ export function home() {
 <h1 id="h1" tabindex="-1">Aprende <span class="grad">programación orientada a objetos</span> paso a paso</h1>
 <p class="lead">Un temario tipo wiki con lecciones cortas como entradas de blog, ejemplos en Java y autoevaluación en cada tema.</p>
 <ul class="stats"><li><b>${MODULES.length}</b> módulos</li><li><b>${LESSONS.length}</b> lecciones</li><li><b>${mins}</b> min</li></ul>
-<p><a class="btn p" href="lecciones/${LESSONS[0].id}.html" data-cta="empezar-hero">Empezar ahora →</a> <a class="btn" href="temario.html" data-cta="ver-temario">Ver temario</a></p></div>
+<p><a class="btn p" href="lecciones/${LESSONS[0].id}.html" data-cta="empezar-hero">Empezar ahora →</a> <a class="btn" href="temario.html" data-cta="ver-temario">Ver temario</a> <a class="btn" href="repaso.html" data-cta="ver-repaso">Apuntes de repaso</a></p></div>
 <div class="term" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><pre><code><span class="c">// DevAcademy · Persona.java</span>
 <span class="k">class</span> Persona {
   <span class="k">private</span> String talento;
@@ -73,7 +74,7 @@ export function home() {
 <h2 class="reveal">Cómo aprenderás</h2><ul class="grid">${[["1 · Lee", "Lecciones breves con índice, términos clave y fuente del compendio.", "m1"], ["2 · Practica", "Ejemplos de código listos para copiar y probar.", "m2"], ["3 · Comprueba", "Una pregunta de autoevaluación y progreso guardado.", "m3"]].map((c, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="${c[2]}"><h3>${c[0]}</h3><p>${c[1]}</p></div></li>`).join("")}</ul>
 <h2 class="reveal">Módulos del curso</h2><ul class="grid mods">${MODULES.map((m, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="${m.id}"><h3>${m.t}</h3><p>${m.d}</p><a href="temario.html#${m.id}">${LESSONS.filter((l) => l.m === m.id).length} lecciones →</a></div></li>`).join("")}</ul>
 <h2 class="reveal">Preguntas frecuentes</h2>${FAQ.map((f) => `<details class="reveal"><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("")}
-<h2 class="reveal">En qué se basa el contenido</h2><ul class="grid">${[["MF0227_3 · UF2404","Principios de la programación orientada a objetos: nueve unidades, de la abstracción a la implementación en Java."],["MF0227_3 · UF2405","Modelo de programación web y bases de datos: arquitectura multicapa, SQL y acceso a datos."],["Grady Booch","Análisis y diseño orientado a objetos: complejidad, modelo de objetos, clases y clasificación."],["INTECO","Ingeniería del software: metodologías y ciclos de vida."]].map((c, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="m${i + 1}"><h3>${c[0]}</h3><p>${c[1]}</p></div></li>`).join("")}</ul>
+<h2 class="reveal">En qué se basa el contenido</h2><ul class="grid">${[["MF0227_3 · UF2404","Principios de la programación orientada a objetos: nueve unidades, de la abstracción a la implementación en Java."],["MF0227_3 · UF2405","Modelo de programación web y bases de datos: arquitectura multicapa, SQL y acceso a datos."],["MF0227_3 · UF2406","Ciclo de vida del desarrollo de aplicaciones: UML, estimación, calidad, pruebas, excepciones y documentación."],["Grady Booch","Análisis y diseño orientado a objetos: complejidad, modelo de objetos, clases y clasificación."],["INTECO","Ingeniería del software: metodologías y ciclos de vida."]].map((c, i) => `<li class="reveal" style="--i:${i}"><div class="card" data-mod="m${i + 1}"><h3>${c[0]}</h3><p>${c[1]}</p></div></li>`).join("")}</ul>
 <section class="cta reveal"><h2 style="margin-top:0">Tu talento, tu código, tu futuro.</h2><p class="lead" style="margin-inline:auto">Empieza hoy la primera lección. Sin registro, sin coste.</p><a class="btn p" href="lecciones/${LESSONS[0].id}.html" data-cta="empezar-final">Empezar el curso →</a></section>`;
   return layout({ title: `${SITE.name} · Curso de ${SITE.course} gratis`, desc: "Aprende programación orientada a objetos paso a paso: abstracción, clases, herencia, polimorfismo y excepciones con ejemplos en Java. Tu talento, tu código, tu futuro.", path: "", body, active: "inicio",
     ld: [{ "@context": "https://schema.org", "@type": "Course", name: SITE.course, description: "Curso de POO con ejemplos en Java.", inLanguage: "es", provider: { "@type": "Organization", name: SITE.name, url: SITE.url, slogan: SITE.slogan }, hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: `PT${mins}M` }, isAccessibleForFree: true },

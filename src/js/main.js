@@ -6,5 +6,6 @@ import { initSearchUI } from "./search-ui.js";
 import { initReveal } from "./reveal.js";
 import { initWiki } from "./wiki.js";
 import { initTracking } from "./analytics.js";
-initTheme(); initProgress(); initFilter(); initSearchUI(); initReveal(); initWiki(); initTracking();
+import { initRepaso } from "./repaso.js";
+initTheme(); initProgress(); initFilter(); initSearchUI(); initReveal(); initWiki(); initTracking(); initRepaso();
 if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register(document.documentElement.dataset.root + "sw.js").catch(() => {});

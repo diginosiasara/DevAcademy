@@ -1,5 +1,5 @@
 /* Service worker mínimo: caché de recursos estáticos para carga rápida y uso sin conexión. */
-const C = "devacademy-v1";
+const C = "devacademy-v2";
 self.addEventListener("install", (e) => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(caches.keys().then((k) => Promise.all(k.filter((x) => x !== C).map((x) => caches.delete(x))))));
 self.addEventListener("fetch", (e) => {

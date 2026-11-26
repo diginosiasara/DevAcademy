@@ -1,6 +1,8 @@
 /* SEARCH INDEX: única responsabilidad, convertir el contenido en documentos de búsqueda.
    Cada lección genera 1 documento de lección + 1 documento por apartado (h2) con enlace profundo (#ancla). */
 import { LESSONS, MODULES } from "../data/content.js";
+import { REPASO } from "../data/repaso.js";
+import { uid, repasoText } from "./repaso.mjs";
 const dec = (s) => s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
 const text = (h) => dec(h.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 const codeOf = (h) => [...h.matchAll(/<pre[\s\S]*?<\/pre>/g)].map((m) => text(m[0])).join(" ");
@@ -15,5 +17,8 @@ export function buildIndex() {
     parts.forEach((p) => { const id = p.match(/id="([^"]+)"/)[1], t = text(p.match(/<h2[^>]*>(.*?)<\/h2>/)[1]);
       docs.push({ ...common, id: `${l.id}#${id}`, kind: "section", order: order++, url: `${base}#${id}`, anchor: id, title: t, heading: t, summary: "", heads: [], text: text(p.replace(/<h2[\s\S]*?<\/h2>/, "")), code: codeOf(p) }); });
   });
+  /* Apuntes de repaso: un documento por unidad, con enlace profundo a repaso.html#unidad. */
+  REPASO.forEach((p) => p.units.forEach((u) => { const id = uid(p, u), t = `Repaso ${p.code} · ${u.id}: ${u.title}`;
+    docs.push({ lesson: "repaso-" + id, lessonTitle: t, mod: "repaso", module: "Apuntes de repaso", tags: ["repaso", p.code, u.id], id: "repaso-" + id, kind: "lesson", order: order++, url: `repaso.html#${id}`, anchor: "", title: t, heading: "", summary: u.hook, heads: [], text: repasoText(p, u), code: "" }); }));
   return docs;
 }

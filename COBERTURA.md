@@ -1,6 +1,6 @@
 # Cobertura del contenido
 
-Se han leído por OCR **todas las páginas** de UF2404 (787) y UF2405 (472), además de los documentos de apoyo (INTECO, Booch, tutorial de entorno, J2ME, Foro). El curso tiene **74 lecciones en 12 módulos** (~9.7 h de lectura) y un glosario de **106 términos**.
+Se han leído por OCR **todas las páginas** de UF2404 (787) y UF2405 (472), además de los documentos de apoyo (INTECO, Booch, tutorial de entorno, J2ME, Foro). El curso tiene **82 lecciones en 13 módulos** (~10.9 h de lectura) y un glosario de **118 términos**. Además incluye la página de **apuntes de repaso** y la guía descargable en Word.
 
 ## Lecciones por módulo
 
@@ -101,6 +101,19 @@ Se han leído por OCR **todas las páginas** de UF2404 (787) y UF2405 (472), ade
 - Ejecutar consultas y manipular resultados *(UF2405 · UD5 · 5.4.2 y 5.4.3)*
 - Procedimientos almacenados y transacciones *(UF2405 · UD5 · 5.4.4 y 5.4.5)*
 - Persistencia de objetos con el patrón DAO *(UF2405 · UD4 y UD5)*
+
+### Ciclo de vida del desarrollo de aplicaciones (UF2406)
+- Proceso de ingeniería del software: fases, modelos y metodologías *(UF2406 · UD1)*
+- Planificación y seguimiento: estimación, PERT y Gantt *(UF2406 · UD2)*
+- Diagramado con UML *(UF2406 · UD3)*
+- Desarrollo de la interfaz gráfica de usuario (GUI) *(UF2406 · UD4)*
+- Calidad del software: modelos, métricas y madurez *(UF2406 · UD5)*
+- Tipos de pruebas: caja negra, caja blanca y JUnit *(UF2406 · UD6)*
+- Excepciones: gestión de errores y buenas prácticas *(UF2406 · UD7)*
+- Documentación del software *(UF2406 · UD8)*
+
+## Apuntes de repaso
+`repaso.html` resume en 20 unidades UF2404 (a partir de los documentos de apoyo), UF2405 y UF2406, con 74 preguntas de autotest y una chuleta final. Es el mismo contenido de la guía Word `descargas/Guia_visual_estudio_UF2404_UF2405_UF2406.docx`.
 
 ## Lo que no se reproduce
 - Las soluciones y los ejercicios de autoevaluación de cada unidad del manual (el curso incluye prácticas y autoevaluaciones propias).

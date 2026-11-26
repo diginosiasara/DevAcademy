@@ -105,5 +105,17 @@ export const GLOSSARY = [
 ["Navegador","Aplicación cliente que interpreta documentos web y los muestra al usuario.","Arquitectura web"],
 ["Servidor web","Servidor que aloja sitios y aplicaciones web y atiende peticiones HTTP.","Arquitectura web"],
 ["DNS","Servicio que traduce nombres de dominio en direcciones IP.","Protocolos y tecnologías"],
-["URL","Dirección que localiza un recurso en la red: protocolo, servidor y ruta.","Protocolos y tecnologías"]
+["URL","Dirección que localiza un recurso en la red: protocolo, servidor y ruta.","Protocolos y tecnologías"],
+["Trazabilidad","Capacidad de rastrear un elemento (requisito, diseño, código) hasta su origen a lo largo de las fases.","Proceso de ingeniería del software"],
+["Camino crítico","Ruta más larga de actividades sin holgura en un diagrama PERT; fija la duración mínima del proyecto.","Planificación y seguimiento"],
+["COCOMO","Modelo de estimación de costes de Boehm: esfuerzo = a · KLOC^b, con modos orgánico, semiacoplado y empotrado.","Planificación y seguimiento"],
+["Puntos de función","Medida del tamaño funcional del software desde el punto de vista del usuario (Albrecht, IBM, 1979).","Planificación y seguimiento"],
+["UML","Lenguaje de modelado de Booch, Jacobson y Rumbaugh; en su versión 2.x define 14 diagramas.","Diagramado con UML"],
+["Caja negra","Prueba que examina solo entradas y salidas, sin mirar el código.","Tipos de pruebas"],
+["Caja blanca","Prueba que examina la estructura interna y los caminos lógicos del código.","Tipos de pruebas"],
+["JUnit","Marco de pruebas unitarias para Java; las clases de prueba se nombran NombreClaseTest.","Tipos de pruebas"],
+["CMM","Modelo de madurez de procesos con cinco niveles inclusivos: Inicial, Repetible, Definido, Gestionado y Optimizado.","Calidad del software"],
+["Deuda técnica","Coste acumulado por no mantener bien el código; se relaciona con la mantenibilidad.","Calidad del software"],
+["Javadoc","Herramienta que genera documentación HTML a partir de los comentarios del código Java.","Documentación del software"],
+["CASE","Herramientas de ingeniería del software asistida por ordenador (Upper, Lower e I-CASE).","Proceso de ingeniería del software"],
 ];
